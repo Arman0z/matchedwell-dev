@@ -14,10 +14,10 @@ const Navigation: React.FC<NavigationProps> = ({
   // Navigation items configuration
   const navItems = [
     { label: 'Why Coaching', href: '#why-coaching' },
-    { label: 'Our Solution', href: '#solution' },
+    { label: 'Who We Are', href: '#who-we-are' },
     { label: 'For Business', href: '#business' },
     { label: 'For Coaches', href: '#coaches' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Contact Us', href: '#contact' }
   ];
 
   const scrollToTop = (e: React.MouseEvent) => {
@@ -54,7 +54,7 @@ const Navigation: React.FC<NavigationProps> = ({
               <a 
                 key={item.label}
                 href={item.href} 
-                className="relative transition-colors group py-1 text-gray-700 hover:text-primary font-bold"
+                className="relative transition-all group py-1 text-gray-800 hover:text-primary font-semibold text-base tracking-wide"
               >
                 <span className="relative z-10">{item.label}</span>
                 {/* Animated underline on hover */}
@@ -69,7 +69,7 @@ const Navigation: React.FC<NavigationProps> = ({
           {/* CTA Button */}
           <a 
             href={ctaHref}
-            className="bg-primary hover:bg-primary-dark text-white font-medium px-6 py-2.5 rounded-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="bg-primary hover:bg-primary-dark text-white font-semibold text-base tracking-wide px-6 py-2.5 rounded-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             {ctaText}
           </a>

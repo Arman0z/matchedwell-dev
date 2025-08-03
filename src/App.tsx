@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import WhyCoaching from './sections/WhyCoaching';
-import OurSolution from './sections/OurSolution';
+import WhoWeAre from './sections/WhoWeAre';
 import ForBusiness from './sections/ForBusiness';
 import ForCoaches from './sections/ForCoaches';
 import Contact from './sections/Contact';
@@ -25,7 +25,7 @@ function App() {
       <Navigation />
       <Hero />
       <WhyCoaching id="why-coaching" />
-      <OurSolution id="solution" />
+      <WhoWeAre id="who-we-are" />
       <ForBusiness id="business" />
       <ForCoaches id="coaches" />
       <Contact id="contact" />

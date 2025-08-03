@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { fadeInVariants, slideFromLeftVariants, slideFromRightVariants, scaleFadeVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
+import { fadeInVariants, slideFromLeftVariants, scaleFadeVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
+import SectionTag from '../components/SectionTag';
 
 interface ForBusinessProps {
   id?: string;
@@ -23,12 +24,17 @@ const ForBusiness: React.FC<ForBusinessProps> = ({ id = "for-business" }) => {
           viewport={eagerViewport}
           variants={staggerContainerVariants}
         >
+          <SectionTag label="For Business" className="text-gray-700" />
           <motion.h2 
             className="font-serif text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
             variants={fadeInVariants}
           >
             Fuel Performance. Retain Talent. Drive Revenue.
           </motion.h2>
+          <motion.div
+            className="w-24 h-1 bg-primary mx-auto mb-8"
+            variants={fadeInVariants}
+          />
           <motion.p 
             className="font-sans text-xl text-gray-600 max-w-3xl mx-auto"
             variants={fadeInVariants}

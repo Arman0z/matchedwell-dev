@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { fadeInVariants, scaleFadeVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
+import { fadeInVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
+import SectionTag from '../components/SectionTag';
 
 interface ContactProps {
   id?: string;
@@ -29,12 +30,17 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
           viewport={eagerViewport}
           variants={staggerContainerVariants}
         >
+          <SectionTag label="Contact Us" className="text-white" />
           <motion.h2 
-            className="font-serif text-5xl md:text-6xl mb-6"
+            className="font-serif text-5xl md:text-6xl mb-4"
             variants={fadeInVariants}
           >
             Ready to Transform Your Organization?
           </motion.h2>
+          <motion.div
+            className="w-24 h-1 bg-primary mx-auto mb-8"
+            variants={fadeInVariants}
+          />
           <motion.p 
             className="font-sans text-xl text-gray-300 max-w-2xl mx-auto"
             variants={fadeInVariants}

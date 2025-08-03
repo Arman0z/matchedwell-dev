@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { fadeInVariants, staggerContainerVariants, slideFromLeftVariants, blurFocusVariants, defaultViewport, eagerViewport, fastStaggerContainerVariants } from '../hooks/useScrollAnimation';
+import SectionTag from '../components/SectionTag';
 
-interface OurSolutionProps {
+interface WhoWeAreProps {
   id?: string;
 }
 
-const OurSolution: React.FC<OurSolutionProps> = ({ id = "our-solution" }) => {
+const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
   return (
     <section id={id} className="relative py-24 bg-gray-900 text-white">
       {/* Executive luxury background */}
@@ -32,12 +33,17 @@ const OurSolution: React.FC<OurSolutionProps> = ({ id = "our-solution" }) => {
           viewport={eagerViewport}
           variants={staggerContainerVariants}
         >
+          <SectionTag label="Who We Are" className="text-white" />
           <motion.h2 
-            className="font-serif text-5xl md:text-6xl mb-6"
+            className="font-serif text-5xl md:text-6xl mb-4"
             variants={fadeInVariants}
           >
             Precision Matching, Built for Impact.
           </motion.h2>
+          <motion.div
+            className="w-24 h-1 bg-primary mx-auto mb-8"
+            variants={fadeInVariants}
+          />
           <motion.p 
             className="font-sans text-xl text-gray-300 max-w-3xl mx-auto"
             variants={fadeInVariants}
@@ -128,4 +134,4 @@ const OurSolution: React.FC<OurSolutionProps> = ({ id = "our-solution" }) => {
   );
 };
 
-export default OurSolution;
+export default WhoWeAre;

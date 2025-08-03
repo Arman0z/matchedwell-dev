@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { fadeInVariants, slideFromLeftVariants, slideFromRightVariants, scaleFadeVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
+import { fadeInVariants, slideFromLeftVariants, scaleFadeVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
+import SectionTag from '../components/SectionTag';
 
 interface ForCoachesProps {
   id?: string;
@@ -9,6 +10,9 @@ const ForCoaches: React.FC<ForCoachesProps> = ({ id = "for-coaches" }) => {
   return (
     <section id={id} className="relative py-20 px-6 lg:px-8 bg-stone-200">
       <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <SectionTag label="For Coaches" className="text-gray-700" />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial="hidden"
@@ -16,11 +20,15 @@ const ForCoaches: React.FC<ForCoachesProps> = ({ id = "for-coaches" }) => {
             viewport={eagerViewport}
           >
             <motion.h2 
-              className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               variants={fadeInVariants}
             >
               Grow Your Practice Stress-Free
             </motion.h2>
+            <motion.div
+              className="w-24 h-1 bg-primary mb-8"
+              variants={fadeInVariants}
+            />
             <motion.p 
               className="font-sans text-xl text-gray-600 mb-8"
               variants={fadeInVariants}

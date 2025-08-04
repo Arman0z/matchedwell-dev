@@ -154,15 +154,6 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
 
             {/* Main circle container with glassmorphism */}
             <div className="absolute inset-2 rounded-full bg-white/5 backdrop-blur-md border border-white/20 overflow-hidden">
-              {/* Center logo/icon */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center z-20"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              >
-                <span className="font-serif text-2xl font-bold">MW</span>
-              </motion.div>
-
               {/* Animated dividers */}
               <motion.div 
                 className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-white/30 to-transparent -translate-x-1/2"

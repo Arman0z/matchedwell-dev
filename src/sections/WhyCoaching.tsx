@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { fadeInVariants, staggerContainerVariants, scaleFadeVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
 import SectionTag from '../components/SectionTag';
+import { ASSETS } from '../constants/assets';
 
 interface WhyCoachingProps {
   id?: string;
@@ -59,12 +60,12 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
             {/* Default state: Image top, text bottom */}
             <div className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-0 group-hover:delay-200 z-10">
               <div className="h-2/3 overflow-hidden">
-                <img src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whycoaching1.png" alt="" className="w-full h-full object-cover" />
+                <img src={ASSETS.WHY_COACHING_1} alt="" className="w-full h-full object-cover" />
               </div>
               <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
                 <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Limited Bandwidth</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Your leaders are drowning in day-to-day operations, leaving no time for strategic growth.
+                  Top performers promoted for individual success now juggle untrained leadership duties – leaving less time for individual contribution, to grow teams and drive revenue.
                 </p>
               </div>
             </div>
@@ -82,7 +83,7 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
                   </p>
                 </div>
                 <div className="h-2/3 overflow-hidden">
-                  <img src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whycoaching1.5.png" alt="" className="w-full h-full object-cover" />
+                  <img src={ASSETS.WHY_COACHING_1_5} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>
               {/* Downward expanding reveal mask */}
@@ -98,12 +99,12 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
             {/* Default state: Image top, text bottom */}
             <div className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-0 group-hover:delay-200 z-10">
               <div className="h-2/3 overflow-hidden">
-                <img src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whycoaching2.png" alt="" className="w-full h-full object-cover" />
+                <img src={ASSETS.WHY_COACHING_2} alt="" className="w-full h-full object-cover" />
               </div>
               <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
                 <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Talent Retention</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  High performers are leaving for companies that invest in their growth and development.
+                  Without investment in development and engagement, burnout and turnover rise – your best people walk away, taking your investment with them.
                 </p>
               </div>
             </div>
@@ -121,7 +122,7 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
                   </p>
                 </div>
                 <div className="h-2/3 overflow-hidden">
-                  <img src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whycoaching2.5.png" alt="" className="w-full h-full object-cover" />
+                  <img src={ASSETS.WHY_COACHING_2_5} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>
               {/* Downward expanding reveal mask */}
@@ -137,12 +138,12 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
             {/* Default state: Image top, text bottom */}
             <div className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-0 group-hover:delay-200 z-10">
               <div className="h-2/3 overflow-hidden">
-                <img src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whycoaching3.png" alt="" className="w-full h-full object-cover" />
+                <img src={ASSETS.WHY_COACHING_3} alt="" className="w-full h-full object-cover" />
               </div>
               <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
                 <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Revenue Targets</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Missed opportunities and poor execution are preventing your growth goals.
+                  Revenue targets are either falling short or leaving growth on the table – competitors are gaining ground.
                 </p>
               </div>
             </div>
@@ -160,7 +161,7 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
                   </p>
                 </div>
                 <div className="h-2/3 overflow-hidden">
-                  <img src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whycoaching3.5.png" alt="" className="w-full h-full object-cover" />
+                  <img src={ASSETS.WHY_COACHING_3_5} alt="" className="w-full h-full object-cover" />
                 </div>
               </div>
               {/* Downward expanding reveal mask */}

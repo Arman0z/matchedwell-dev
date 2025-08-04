@@ -60,16 +60,16 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
     }
   };
 
-  const getDescriptionPosition = (position: string) => {
+  const getDescriptionStyles = (position: string) => {
     switch (position) {
       case 'top-left':
-        return 'top-0 left-0 items-start justify-start text-left';
+        return 'top-0 left-0 -translate-x-full -translate-y-1/4 pr-8 text-right';
       case 'top-right':
-        return 'top-0 right-0 items-start justify-end text-right';
+        return 'top-0 right-0 translate-x-full -translate-y-1/4 pl-8 text-left';
       case 'bottom-left':
-        return 'bottom-0 left-0 items-end justify-start text-left';
+        return 'bottom-0 left-0 -translate-x-full translate-y-1/4 pr-8 text-right';
       case 'bottom-right':
-        return 'bottom-0 right-0 items-end justify-end text-right';
+        return 'bottom-0 right-0 translate-x-full translate-y-1/4 pl-8 text-left';
       default:
         return '';
     }
@@ -132,70 +132,15 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
         
         {/* Premium Interactive Circle with Background Text */}
         <motion.div 
-          className="relative mx-auto my-20 max-w-5xl"
+          className="relative mx-auto my-20 max-w-7xl flex justify-center items-center"
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInVariants}
         >
-          {/* Background description areas */}
-          <div className="absolute inset-0 w-full h-full">
-            {processSteps.map((step) => (
-              <AnimatePresence key={`bg-${step.id}`}>
-                {hoveredQuadrant === step.id && (
-                  <motion.div
-                    className={`absolute w-1/2 h-1/2 flex p-12 lg:p-16 ${getDescriptionPosition(step.position)}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  >
-                    <div className="max-w-xs">
-                      {step.position.includes('right') ? (
-                        <>
-                          <motion.p 
-                            className="font-sans text-gray-400 leading-relaxed mb-4"
-                            initial={{ y: 10 }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.3, delay: 0.2 }}
-                          >
-                            {step.description}
-                          </motion.p>
-                          <motion.div 
-                            className="w-16 h-1 bg-primary/60 ml-auto"
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: 1 }}
-                            transition={{ duration: 0.3, delay: 0.1 }}
-                            style={{ transformOrigin: 'right' }}
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <motion.div 
-                            className="w-16 h-1 bg-primary/60 mb-4"
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: 1 }}
-                            transition={{ duration: 0.3, delay: 0.1 }}
-                          />
-                          <motion.p 
-                            className="font-sans text-gray-400 leading-relaxed"
-                            initial={{ y: 10 }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.3, delay: 0.2 }}
-                          >
-                            {step.description}
-                          </motion.p>
-                        </>
-                      )}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            ))}
-          </div>
-
-          {/* Circle container */}
-          <div className="relative flex justify-center items-center">
+          {/* Circle and descriptions container */}
+          <div className="relative w-[800px] lg:w-[1000px] h-[500px] lg:h-[600px] flex justify-center items-center">
+            {/* Central circle */}
             <div className="relative w-[400px] h-[400px] lg:w-[500px] lg:h-[500px]">
               {/* Animated rotating border */}
               <motion.div
@@ -254,6 +199,61 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                   </motion.div>
                 ))}
               </div>
+
+              {/* External descriptions positioned around the circle */}
+              {processSteps.map((step) => (
+                <AnimatePresence key={`desc-${step.id}`}>
+                  {hoveredQuadrant === step.id && (
+                    <motion.div
+                      className={`absolute w-64 lg:w-80 ${getDescriptionStyles(step.position)}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                      <div>
+                        {step.position.includes('right') ? (
+                          <>
+                            <motion.p 
+                              className="font-sans text-gray-400 leading-relaxed mb-4"
+                              initial={{ y: 10 }}
+                              animate={{ y: 0 }}
+                              transition={{ duration: 0.3, delay: 0.2 }}
+                            >
+                              {step.description}
+                            </motion.p>
+                            <motion.div 
+                              className="w-16 h-1 bg-primary/60 ml-auto"
+                              initial={{ scaleX: 0 }}
+                              animate={{ scaleX: 1 }}
+                              transition={{ duration: 0.3, delay: 0.1 }}
+                              style={{ transformOrigin: 'right' }}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <motion.div 
+                              className="w-16 h-1 bg-primary/60 mb-4 ml-auto"
+                              initial={{ scaleX: 0 }}
+                              animate={{ scaleX: 1 }}
+                              transition={{ duration: 0.3, delay: 0.1 }}
+                              style={{ transformOrigin: 'right' }}
+                            />
+                            <motion.p 
+                              className="font-sans text-gray-400 leading-relaxed"
+                              initial={{ y: 10 }}
+                              animate={{ y: 0 }}
+                              transition={{ duration: 0.3, delay: 0.2 }}
+                            >
+                              {step.description}
+                            </motion.p>
+                          </>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              ))}
             </div>
           </div>
         </motion.div>

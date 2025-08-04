@@ -191,7 +191,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                     />
                     
                     {/* Title only */}
-                    <div className="relative h-full flex items-center justify-center p-6">
+                    <div className="relative h-full flex items-center justify-center p-8 lg:p-12">
                       <h3 className="font-serif text-lg lg:text-xl text-center leading-tight group-hover:text-primary transition-colors duration-300">
                         {step.title}
                       </h3>

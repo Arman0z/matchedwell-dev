@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { fadeInVariants, staggerContainerVariants, slideFromLeftVariants, blurFocusVariants, defaultViewport, eagerViewport, fastStaggerContainerVariants } from '../hooks/useScrollAnimation';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { fadeInVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
 import SectionTag from '../components/SectionTag';
 import { ASSETS } from '../constants/assets';
 
@@ -7,28 +8,102 @@ interface WhoWeAreProps {
   id?: string;
 }
 
+interface ProcessStep {
+  id: number;
+  title: string;
+  description: string;
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+}
+
+const processSteps: ProcessStep[] = [
+  {
+    id: 1,
+    title: 'Strategic Talent Selection',
+    description: 'Partner with leadership to identify high-impact employees based on role criticality, growth trajectory, and performance opportunity.',
+    position: 'top-left'
+  },
+  {
+    id: 2,
+    title: 'Individual Deep Dive',
+    description: 'Build rapport and uncover personal goals, leadership style, and development edges through tailored intake sessions.',
+    position: 'top-right'
+  },
+  {
+    id: 3,
+    title: 'Precision Matching',
+    description: 'Research, vet, and facilitate chemistry calls with 2-3 coaches aligned to strategic goals, personality, and culture fit.',
+    position: 'bottom-left'
+  },
+  {
+    id: 4,
+    title: 'Ongoing Accountability',
+    description: 'Monthly check-ins and quarterly reviews ensure alignment, track ROI, and optimize outcomes for sustained development.',
+    position: 'bottom-right'
+  }
+];
+
 const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
+  const [hoveredQuadrant, setHoveredQuadrant] = useState<number | null>(null);
+
+  const getQuadrantStyles = (position: string) => {
+    switch (position) {
+      case 'top-left':
+        return 'top-0 left-0 rounded-tl-full';
+      case 'top-right':
+        return 'top-0 right-0 rounded-tr-full';
+      case 'bottom-left':
+        return 'bottom-0 left-0 rounded-bl-full';
+      case 'bottom-right':
+        return 'bottom-0 right-0 rounded-br-full';
+      default:
+        return '';
+    }
+  };
+
+  const getDescriptionPosition = (position: string) => {
+    switch (position) {
+      case 'top-left':
+        return 'top-1/4 -left-80 text-right';
+      case 'top-right':
+        return 'top-1/4 -right-80 text-left';
+      case 'bottom-left':
+        return 'bottom-1/4 -left-80 text-right';
+      case 'bottom-right':
+        return 'bottom-1/4 -right-80 text-left';
+      default:
+        return '';
+    }
+  };
+
   return (
-    <section id={id} className="relative py-24 bg-gray-900 text-white">
-      {/* Executive luxury background */}
+    <section id={id} className="relative py-24 bg-gray-900 text-white overflow-hidden">
+      {/* Animated background with subtle parallax */}
       <motion.div 
         className="absolute inset-0"
-        initial="hidden"
-        whileInView="visible"
-        viewport={eagerViewport}
-        variants={blurFocusVariants}
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
         <img 
           src={ASSETS.WHO_WE_ARE}
           alt="Executive office"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-20"
+        />
+        {/* Animated gradient overlay */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"
+          animate={{
+            opacity: [0.2, 0.3, 0.2],
+            x: [-100, 100, -100],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.div>
       
       <div className="relative max-w-7xl mx-auto px-6">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial="hidden"
           whileInView="visible"
           viewport={eagerViewport}
@@ -42,8 +117,10 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
             Start Building Your <span className="text-primary">Winning Formula</span>
           </motion.h2>
           <motion.div
-            className="w-24 h-1 bg-primary mx-auto mb-8"
+            className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8"
             variants={fadeInVariants}
+            animate={{ scaleX: [0.8, 1, 0.8] }}
+            transition={{ duration: 3, repeat: Infinity }}
           />
           <motion.p 
             className="font-sans text-xl text-gray-300 max-w-3xl mx-auto"
@@ -53,76 +130,114 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
           </motion.p>
         </motion.div>
         
-        {/* Circle with 4 Quadrants */}
+        {/* Premium Interactive Circle */}
         <motion.div 
-          className="flex justify-center items-center my-16"
+          className="flex justify-center items-center my-20 relative"
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInVariants}
         >
-          <div className="relative w-[600px] h-[600px]">
-            {/* Main circle container */}
-            <div className="absolute inset-0 rounded-full border-4 border-white/30 bg-white/5 backdrop-blur-sm">
-              {/* Vertical divider */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-white/30 -translate-x-1/2"></div>
-              {/* Horizontal divider */}
-              <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/30 -translate-y-1/2"></div>
-              
-              {/* Top Left Quadrant */}
-              <motion.div 
-                className="absolute top-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
-                variants={slideFromLeftVariants}
+          <div className="relative w-[500px] h-[500px] lg:w-[600px] lg:h-[600px]">
+            {/* Animated rotating border */}
+            <motion.div
+              className="absolute inset-0 rounded-full"
+              style={{
+                background: 'conic-gradient(from 0deg, #0080FF, #71C9CD, #0080FF)',
+                padding: '2px',
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="w-full h-full rounded-full bg-gray-900" />
+            </motion.div>
+
+            {/* Main circle container with glassmorphism */}
+            <div className="absolute inset-2 rounded-full bg-white/5 backdrop-blur-md border border-white/20 overflow-hidden">
+              {/* Center logo/icon */}
+              <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center z-20"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
               >
-                <h3 className="font-serif text-xl mb-2">Strategic Talent Selection</h3>
-                <p className="font-sans text-sm text-gray-300">
-                  Partner with leadership to identify high-impact employees based on role criticality, growth trajectory, and performance opportunity.
-                </p>
+                <span className="font-serif text-2xl font-bold">MW</span>
               </motion.div>
-              
-              {/* Top Right Quadrant */}
+
+              {/* Animated dividers */}
               <motion.div 
-                className="absolute top-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
-                variants={slideFromLeftVariants}
-              >
-                <h3 className="font-serif text-xl mb-2">Individual Deep Dive</h3>
-                <p className="font-sans text-sm text-gray-300">
-                  Build rapport and uncover personal goals, leadership style, and development edges through tailored intake sessions.
-                </p>
-              </motion.div>
-              
-              {/* Bottom Left Quadrant */}
+                className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-white/30 to-transparent -translate-x-1/2"
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
               <motion.div 
-                className="absolute bottom-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
-                variants={slideFromLeftVariants}
-              >
-                <h3 className="font-serif text-xl mb-2">Precision Matching</h3>
-                <p className="font-sans text-sm text-gray-300">
-                  Research, vet, and facilitate chemistry calls with 2-3 coaches aligned to strategic goals, personality, and culture fit.
-                </p>
-              </motion.div>
+                className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-y-1/2"
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+              />
               
-              {/* Bottom Right Quadrant */}
-              <motion.div 
-                className="absolute bottom-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
-                variants={slideFromLeftVariants}
-              >
-                <h3 className="font-serif text-xl mb-2">Ongoing Accountability</h3>
-                <p className="font-sans text-sm text-gray-300">
-                  Monthly check-ins and quarterly reviews ensure alignment, track ROI, and optimize outcomes for sustained development.
-                </p>
-              </motion.div>
+              {/* Quadrants */}
+              {processSteps.map((step) => (
+                <motion.div
+                  key={step.id}
+                  className={`absolute w-1/2 h-1/2 ${getQuadrantStyles(step.position)} cursor-pointer group`}
+                  onHoverStart={() => setHoveredQuadrant(step.id)}
+                  onHoverEnd={() => setHoveredQuadrant(null)}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {/* Hover glow effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ 
+                      borderRadius: step.position.includes('top-left') ? '100% 0 0 0' :
+                                   step.position.includes('top-right') ? '0 100% 0 0' :
+                                   step.position.includes('bottom-left') ? '0 0 0 100%' :
+                                   '0 0 100% 0'
+                    }}
+                  />
+                  
+                  {/* Title only */}
+                  <div className="relative h-full flex items-center justify-center p-8">
+                    <h3 className="font-serif text-xl lg:text-2xl text-center leading-tight group-hover:text-primary transition-colors duration-300">
+                      {step.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              ))}
             </div>
+
+            {/* External descriptions */}
+            <AnimatePresence>
+              {processSteps.map((step) => (
+                hoveredQuadrant === step.id && (
+                  <motion.div
+                    key={`desc-${step.id}`}
+                    className={`absolute w-72 ${getDescriptionPosition(step.position)} z-30`}
+                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <div className="bg-gray-800/90 backdrop-blur-md rounded-xl p-6 border border-primary/30 shadow-2xl">
+                      <div className="w-12 h-1 bg-primary mb-4" />
+                      <p className="font-sans text-gray-300 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                )
+              ))}
+            </AnimatePresence>
           </div>
         </motion.div>
 
-        {/* Features Grid */}
+        {/* Premium Features Grid */}
         <motion.div 
-          className="mt-20 grid md:grid-cols-3 gap-8"
+          className="mt-32 grid md:grid-cols-3 gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
-          variants={fastStaggerContainerVariants}
+          variants={staggerContainerVariants}
         >
           {[
             'Sharper Judgment Under Pressure',
@@ -134,15 +249,21 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
           ].map((feature, i) => (
             <motion.div 
               key={i} 
-              className="flex items-center"
+              className="group flex items-center"
               variants={fadeInVariants}
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mr-4">
-                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <motion.div 
+                className="w-8 h-8 bg-gradient-to-br from-primary/80 to-primary rounded-full flex items-center justify-center flex-shrink-0 mr-4 group-hover:scale-110 transition-transform"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                 </svg>
-              </div>
-              <span className="font-sans text-lg">{feature}</span>
+              </motion.div>
+              <span className="font-sans text-lg group-hover:text-primary transition-colors">{feature}</span>
             </motion.div>
           ))}
         </motion.div>

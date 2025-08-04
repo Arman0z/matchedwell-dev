@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { fadeInVariants, staggerContainerVariants, slideFromLeftVariants, blurFocusVariants, defaultViewport, eagerViewport, fastStaggerContainerVariants } from '../hooks/useScrollAnimation';
 import SectionTag from '../components/SectionTag';
+import { ASSETS } from '../constants/assets';
 
 interface WhoWeAreProps {
   id?: string;
@@ -19,7 +20,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
         <img 
-          src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whoweare.png"
+          src={ASSETS.WHO_WE_ARE}
           alt="Executive office"
           className="w-full h-full object-cover opacity-30"
         />
@@ -38,7 +39,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
             className="font-serif text-5xl lg:text-6xl mb-4"
             variants={fadeInVariants}
           >
-            Start Building Your Winning Formula
+            Start Building Your <span className="text-primary">Winning Formula</span>
           </motion.h2>
           <motion.div
             className="w-24 h-1 bg-primary mx-auto mb-8"
@@ -73,9 +74,6 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute top-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
-                  1
-                </div>
                 <h3 className="font-serif text-xl mb-2">Discovery Phase</h3>
                 <p className="font-sans text-sm text-gray-300">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
@@ -87,9 +85,6 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute top-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
-                  2
-                </div>
                 <h3 className="font-serif text-xl mb-2">Strategic Alignment</h3>
                 <p className="font-sans text-sm text-gray-300">
                   Ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
@@ -101,9 +96,6 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute bottom-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
-                  3
-                </div>
                 <h3 className="font-serif text-xl mb-2">Implementation</h3>
                 <p className="font-sans text-sm text-gray-300">
                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
@@ -115,9 +107,6 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute bottom-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
-                  4
-                </div>
                 <h3 className="font-serif text-xl mb-2">Optimization</h3>
                 <p className="font-sans text-sm text-gray-300">
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.

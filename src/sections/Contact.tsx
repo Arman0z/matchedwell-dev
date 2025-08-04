@@ -61,7 +61,7 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
         >
           <SectionTag label="Contact Us" className="text-white" />
           <motion.h2 
-            className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 text-center mx-auto px-4"
+            className="font-serif text-2xl sm:text-3xl lg:text-4xl xl:text-5xl mb-4 text-center mx-auto"
             variants={fadeInVariants}
           >
             Ready to Transform Your Organization?

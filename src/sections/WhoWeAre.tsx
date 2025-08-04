@@ -214,21 +214,21 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                       <div>
                         {step.position.includes('right') ? (
                           <>
+                            <motion.div 
+                              className="w-16 h-1 bg-primary/60 mb-4"
+                              initial={{ scaleX: 0 }}
+                              animate={{ scaleX: 1 }}
+                              transition={{ duration: 0.3, delay: 0.1 }}
+                              style={{ transformOrigin: 'left' }}
+                            />
                             <motion.p 
-                              className="font-sans text-gray-400 leading-relaxed mb-4"
+                              className="font-sans text-gray-400 leading-relaxed"
                               initial={{ y: 10 }}
                               animate={{ y: 0 }}
                               transition={{ duration: 0.3, delay: 0.2 }}
                             >
                               {step.description}
                             </motion.p>
-                            <motion.div 
-                              className="w-16 h-1 bg-primary/60 ml-auto"
-                              initial={{ scaleX: 0 }}
-                              animate={{ scaleX: 1 }}
-                              transition={{ duration: 0.3, delay: 0.1 }}
-                              style={{ transformOrigin: 'right' }}
-                            />
                           </>
                         ) : (
                           <>

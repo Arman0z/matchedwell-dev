@@ -1,4 +1,5 @@
 import React from 'react';
+import { ASSETS } from '../constants/assets';
 
 interface NavigationProps {
   companyName?: string;
@@ -42,7 +43,7 @@ const Navigation: React.FC<NavigationProps> = ({
             aria-label="Scroll to top"
           >
             <img 
-              src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/matchedwell_logo.svg"
+              src={ASSETS.LOGO}
               alt={companyName}
               className="h-48 w-auto -my-20"
             />

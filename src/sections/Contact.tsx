@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
 import SectionTag from '../components/SectionTag';
+import Button from '../components/Button';
+import { Input, TextArea, Select } from '../components/FormFields';
+import { ASSETS } from '../constants/assets';
+import { ChevronLeft } from 'lucide-react';
 
 interface ContactProps {
   id?: string;
@@ -10,13 +14,38 @@ interface ContactProps {
 const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
   const [userType, setUserType] = useState<'company' | 'coach' | null>(null);
 
+  const employeeOptions = [
+    { value: '', label: 'Select range' },
+    { value: '1-5', label: '1-5 employees' },
+    { value: '6-20', label: '6-20 employees' },
+    { value: '21-50', label: '21-50 employees' },
+    { value: '50+', label: '50+ employees' }
+  ];
+
+  const focusOptions = [
+    { value: '', label: 'Select focus area' },
+    { value: 'leadership', label: 'Leadership Development' },
+    { value: 'executive', label: 'Executive Coaching' },
+    { value: 'team', label: 'Team Performance' },
+    { value: 'culture', label: 'Culture Transformation' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  const experienceOptions = [
+    { value: '', label: 'Select experience' },
+    { value: '1-3', label: '1-3 years' },
+    { value: '4-7', label: '4-7 years' },
+    { value: '8-15', label: '8-15 years' },
+    { value: '15+', label: '15+ years' }
+  ];
+
   return (
     <section id={id} className="relative py-24 bg-gray-900 text-white">
       {/* Luxury background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
         <img 
-          src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/contactus.png"
+          src={ASSETS.CONTACT}
           alt="Modern office"
           className="w-full h-full object-cover opacity-20"
         />
@@ -49,39 +78,37 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
           </motion.p>
         </motion.div>
 
-        {/* User Type Selection */}
-        <motion.div 
-          className="mb-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={defaultViewport}
-          variants={fadeInVariants}
-        >
-          <p className="text-center font-sans text-lg mb-6">I am a:</p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-            <button
-              onClick={() => setUserType('company')}
-              className={`flex-1 py-4 px-6 rounded-lg border-2 transition-all ${
-                userType === 'company' 
-                  ? 'bg-primary border-primary text-white' 
-                  : 'bg-white/10 border-white/20 hover:border-white/40 text-white'
-              }`}
-            >
-              <span className="font-medium">Company Representative</span>
-            </button>
-            <button
-              onClick={() => setUserType('coach')}
-              className={`flex-1 py-4 px-6 rounded-lg border-2 transition-all ${
-                userType === 'coach' 
-                  ? 'bg-primary border-primary text-white' 
-                  : 'bg-white/10 border-white/20 hover:border-white/40 text-white'
-              }`}
-            >
-              <span className="font-medium">Professional Coach</span>
-            </button>
-          </div>
-        </motion.div>
-        
+        {/* User type selection */}
+        {!userType && (
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <p className="text-lg mb-6">I am a...</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                onClick={() => setUserType('company')}
+                variant="outline"
+                size="lg"
+                className="min-w-[200px]"
+              >
+                Company Representative
+              </Button>
+              <Button
+                onClick={() => setUserType('coach')}
+                variant="outline"
+                size="lg"
+                className="min-w-[200px]"
+              >
+                Professional Coach
+              </Button>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Dynamic form */}
         <AnimatePresence mode="wait">
         {userType && (
           <motion.div 
@@ -92,6 +119,19 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.4 }}
           >
+            {/* Back button */}
+            <motion.button
+              type="button"
+              onClick={() => setUserType(null)}
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6 group"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              <span className="text-sm">Back</span>
+            </motion.button>
+
             <motion.form 
               className="space-y-6"
               initial="hidden"
@@ -102,30 +142,29 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
                 className="grid md:grid-cols-2 gap-6"
                 variants={fadeInVariants}
               >
-                <div>
-                  <label className="block text-sm font-sans text-gray-300 mb-2">First Name</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                    placeholder="John"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-sans text-gray-300 mb-2">Last Name</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
-                    placeholder="Doe"
-                  />
-                </div>
+                <Input 
+                  label="First Name"
+                  name="firstName"
+                  type="text"
+                  placeholder="John"
+                  required
+                />
+                <Input 
+                  label="Last Name"
+                  name="lastName"
+                  type="text"
+                  placeholder="Doe"
+                  required
+                />
               </motion.div>
               
               <motion.div variants={fadeInVariants}>
-                <label className="block text-sm font-sans text-gray-300 mb-2">Email</label>
-                <input 
-                  type="email" 
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                <Input 
+                  label="Email"
+                  name="email"
+                  type="email"
                   placeholder={userType === 'company' ? "john.doe@company.com" : "john.doe@email.com"}
+                  required
                 />
               </motion.div>
               
@@ -133,82 +172,78 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
               {userType === 'company' ? (
                 <>
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">Company</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                    <Input 
+                      label="Company"
+                      name="company"
+                      type="text"
                       placeholder="Your Company"
+                      required
                     />
                   </motion.div>
                   
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">Role</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                    <Input 
+                      label="Role"
+                      name="role"
+                      type="text"
                       placeholder="e.g., Chief People Officer"
+                      required
                     />
                   </motion.div>
 
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">Number of Employees to Coach</label>
-                    <select className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary transition-colors appearance-none">
-                      <option value="" className="bg-gray-900">Select range</option>
-                      <option value="1-5" className="bg-gray-900">1-5 employees</option>
-                      <option value="6-20" className="bg-gray-900">6-20 employees</option>
-                      <option value="21-50" className="bg-gray-900">21-50 employees</option>
-                      <option value="50+" className="bg-gray-900">50+ employees</option>
-                    </select>
+                    <Select 
+                      label="Number of Employees to Coach"
+                      name="employeeCount"
+                      options={employeeOptions}
+                      required
+                    />
                   </motion.div>
 
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">Primary Coaching Focus</label>
-                    <select className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary transition-colors appearance-none">
-                      <option value="" className="bg-gray-900">Select focus area</option>
-                      <option value="leadership" className="bg-gray-900">Leadership Development</option>
-                      <option value="executive" className="bg-gray-900">Executive Coaching</option>
-                      <option value="team" className="bg-gray-900">Team Performance</option>
-                      <option value="culture" className="bg-gray-900">Culture Transformation</option>
-                      <option value="other" className="bg-gray-900">Other</option>
-                    </select>
+                    <Select 
+                      label="Primary Coaching Focus"
+                      name="coachingFocus"
+                      options={focusOptions}
+                      required
+                    />
                   </motion.div>
                 </>
               ) : (
                 <>
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">Coaching Specialty</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                    <Input 
+                      label="Coaching Specialty"
+                      name="specialty"
+                      type="text"
                       placeholder="e.g., Executive Leadership, Career Transition"
+                      required
                     />
                   </motion.div>
                   
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">Years of Experience</label>
-                    <select className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary transition-colors appearance-none">
-                      <option value="" className="bg-gray-900">Select experience</option>
-                      <option value="1-3" className="bg-gray-900">1-3 years</option>
-                      <option value="4-7" className="bg-gray-900">4-7 years</option>
-                      <option value="8-15" className="bg-gray-900">8-15 years</option>
-                      <option value="15+" className="bg-gray-900">15+ years</option>
-                    </select>
+                    <Select 
+                      label="Years of Experience"
+                      name="experience"
+                      options={experienceOptions}
+                      required
+                    />
                   </motion.div>
 
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">Certifications</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                    <Input 
+                      label="Certifications"
+                      name="certifications"
+                      type="text"
                       placeholder="e.g., ICF-PCC, EMCC Senior Practitioner"
                     />
                   </motion.div>
 
                   <motion.div variants={fadeInVariants}>
-                    <label className="block text-sm font-sans text-gray-300 mb-2">LinkedIn Profile</label>
-                    <input 
-                      type="url" 
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
+                    <Input 
+                      label="LinkedIn Profile"
+                      name="linkedin"
+                      type="url"
                       placeholder="https://linkedin.com/in/yourprofile"
                     />
                   </motion.div>
@@ -217,27 +252,27 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
               </AnimatePresence>
               
               <motion.div variants={fadeInVariants}>
-                <label className="block text-sm font-sans text-gray-300 mb-2">
-                  {userType === 'company' 
+                <TextArea 
+                  label={userType === 'company' 
                     ? "Tell us about your coaching needs" 
                     : "What makes you a great coach?"}
-                </label>
-                <textarea 
+                  name="message"
                   rows={4}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors resize-none"
                   placeholder={userType === 'company' 
                     ? "Describe your team's challenges and goals..." 
                     : "Share your coaching philosophy and approach..."}
-                ></textarea>
+                  required
+                />
               </motion.div>
               
-              <motion.button 
-                variants={fadeInVariants}
-                type="submit"
-                className="w-full bg-primary hover:bg-primary/90 text-white font-medium px-8 py-4 rounded-lg transition-colors"
-              >
-                {userType === 'company' ? "Get Your Custom Proposal" : "Apply to Join Our Network"}
-              </motion.button>
+              <motion.div variants={fadeInVariants}>
+                <Button 
+                  type="submit"
+                  fullWidth
+                >
+                  {userType === 'company' ? "Get Your Custom Proposal" : "Apply to Join Our Network"}
+                </Button>
+              </motion.div>
             </motion.form>
           </motion.div>
         )}
@@ -249,15 +284,19 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
-          variants={fadeInVariants}
+          variants={staggerContainerVariants}
         >
-          <p className="font-sans text-gray-400 mb-4">Prefer to talk? Schedule a call directly:</p>
-          <button className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            Book a Strategy Call
-          </button>
+          <motion.p 
+            className="text-lg text-gray-400 mb-4"
+            variants={fadeInVariants}
+          >
+            Prefer to talk? Let's schedule a call.
+          </motion.p>
+          <motion.div variants={fadeInVariants}>
+            <Button variant="secondary">
+              Book a Discovery Call
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
     </section>

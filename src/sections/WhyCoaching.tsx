@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { fadeInVariants, staggerContainerVariants, scaleFadeVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
 import SectionTag from '../components/SectionTag';
 import { ASSETS } from '../constants/assets';
 
@@ -7,7 +7,126 @@ interface WhyCoachingProps {
   id?: string;
 }
 
-const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
+const simpleVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const }
+  }
+};
+
+interface CardProps {
+  title: string;
+  description: string;
+  hoverDescription: string;
+  image: string;
+  hoverImage: string;
+  delay: number;
+}
+
+const Card = React.memo<CardProps>(({ title, description, hoverDescription, image, hoverImage, delay }) => {
+  const [hoverImageLoaded, setHoverImageLoaded] = useState(false);
+
+  // Preload hover image when card comes into view
+  React.useEffect(() => {
+    const img = new Image();
+    img.src = hoverImage;
+    img.onload = () => setHoverImageLoaded(true);
+  }, [hoverImage]);
+
+  return (
+    <motion.div 
+      className="h-[32rem] overflow-hidden rounded-2xl border border-stone-200 shadow-lg bg-white relative group"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={cardVariants}
+      transition={{ delay }}
+    >
+      {/* Default state: Image top, text bottom */}
+      <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:opacity-0 z-10">
+        <div className="h-2/3 overflow-hidden">
+          <img 
+            src={image} 
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+          />
+        </div>
+        <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
+          <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">{title}</h3>
+          <p className="text-gray-600 leading-relaxed">{description}</p>
+        </div>
+      </div>
+      
+      {/* Smooth expanding overlay */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-white transform origin-bottom transition-all duration-500 ease-out scale-y-100 group-hover:scale-y-[3] opacity-0 group-hover:opacity-100 z-20"></div>
+      
+      {/* Hover state: Text top, image bottom */}
+      <div className="absolute inset-0 overflow-hidden z-30">
+        <div className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:delay-300">
+          <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
+            <h3 className="font-serif text-2xl font-bold text-primary mb-3 transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
+              {title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed transform transition-all duration-500 delay-75 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+              {hoverDescription}
+            </p>
+          </div>
+          <div className="h-2/3 overflow-hidden">
+            {hoverImageLoaded ? (
+              <img 
+                src={hoverImage} 
+                alt={title}
+                className="w-full h-full object-cover transform transition-transform duration-700 scale-110 group-hover:scale-100"
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-100" />
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+});
+
+Card.displayName = 'Card';
+
+const WhyCoaching = React.memo<WhyCoachingProps>(({ id = "why-coaching" }) => {
+  const cards = [
+    {
+      title: "Limited Bandwidth",
+      description: "Top performers promoted for individual success now juggle untrained leadership duties – leaving less time for individual contribution, to grow teams and drive revenue.",
+      hoverDescription: "Your leaders are drowning in day-to-day operations, leaving no time for strategic growth.",
+      image: ASSETS.WHY_COACHING_1,
+      hoverImage: ASSETS.WHY_COACHING_1_5
+    },
+    {
+      title: "Talent Retention",
+      description: "Without investment in development and engagement, burnout and turnover rise – your best people walk away, taking your investment with them.",
+      hoverDescription: "High performers are leaving for companies that invest in their growth and development.",
+      image: ASSETS.WHY_COACHING_2,
+      hoverImage: ASSETS.WHY_COACHING_2_5
+    },
+    {
+      title: "Revenue Targets",
+      description: "Revenue targets are either falling short or leaving growth on the table – competitors are gaining ground.",
+      hoverDescription: "Untapped leadership potential is directly impacting your bottom line and market position.",
+      image: ASSETS.WHY_COACHING_3,
+      hoverImage: ASSETS.WHY_COACHING_3_5
+    }
+  ];
+
   return (
     <section id={id} className="relative py-20 px-6 lg:px-8 bg-gradient-subtle">
       {/* Subtle pattern overlay */}
@@ -22,156 +141,34 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
           className="text-center mb-16"
           initial="hidden"
           whileInView="visible"
-          viewport={eagerViewport}
-          variants={staggerContainerVariants}
+          viewport={{ once: true, amount: 0.3 }}
+          variants={simpleVariants}
         >
           <SectionTag label="Why Coaching" className="text-gray-700" />
-          <motion.h2 
-            className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
-            variants={fadeInVariants}
-          >
+          <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
             The <span className="text-primary">Secret Advantage</span> of<br />
             High-Performance Organizations
-          </motion.h2>
-          <motion.div
-            className="w-24 h-1 bg-primary mx-auto mb-8"
-            variants={fadeInVariants}
-          />
-          <motion.p 
-            className="font-sans text-xl text-gray-600 max-w-3xl mx-auto"
-            variants={fadeInVariants}
-          >
+          </h2>
+          <div className="w-24 h-1 bg-primary mx-auto mb-8" />
+          <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto">
             Transform your leadership capacity and unlock exponential growth with precision-matched executive coaching.
-          </motion.p>
+          </p>
         </motion.div>
         
-        <motion.div 
-          className="grid md:grid-cols-3 gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={defaultViewport}
-          variants={staggerContainerVariants}
-        >
-          {/* Box 1 - Limited Bandwidth */}
-          <motion.div 
-            className="h-[32rem] overflow-hidden rounded-2xl border border-stone-200 shadow-lg bg-white relative group"
-            variants={scaleFadeVariants}
-          >
-            {/* Default state: Image top, text bottom */}
-            <div className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-0 group-hover:delay-200 z-10">
-              <div className="h-2/3 overflow-hidden">
-                <img src={ASSETS.WHY_COACHING_1} alt="" className="w-full h-full object-cover" />
-              </div>
-              <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
-                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Limited Bandwidth</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Top performers promoted for individual success now juggle untrained leadership duties – leaving less time for individual contribution, to grow teams and drive revenue.
-                </p>
-              </div>
-            </div>
-            
-            {/* Expanding overlay animation */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-white transform origin-bottom transition-all duration-700 ease-out scale-y-100 group-hover:scale-y-[3] opacity-0 group-hover:opacity-100 z-20"></div>
-            
-            {/* Hover state: Text top, image bottom */}
-            <div className="absolute inset-0 overflow-hidden z-30">
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:delay-[600ms]">
-                <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
-                  <h3 className="font-serif text-2xl font-bold text-primary mb-3">Limited Bandwidth</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Your leaders are drowning in day-to-day operations, leaving no time for strategic growth.
-                  </p>
-                </div>
-                <div className="h-2/3 overflow-hidden">
-                  <img src={ASSETS.WHY_COACHING_1_5} alt="" className="w-full h-full object-cover" />
-                </div>
-              </div>
-              {/* Downward expanding reveal mask */}
-              <div className="absolute inset-0 bg-white transform origin-top transition-transform duration-500 ease-in-out -translate-y-full group-hover:translate-y-full group-hover:delay-[400ms] z-40"></div>
-            </div>
-          </motion.div>
-          
-          {/* Box 2 - Talent Retention */}
-          <motion.div 
-            className="h-[32rem] overflow-hidden rounded-2xl border border-stone-200 shadow-lg bg-white relative group"
-            variants={scaleFadeVariants}
-          >
-            {/* Default state: Image top, text bottom */}
-            <div className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-0 group-hover:delay-200 z-10">
-              <div className="h-2/3 overflow-hidden">
-                <img src={ASSETS.WHY_COACHING_2} alt="" className="w-full h-full object-cover" />
-              </div>
-              <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
-                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Talent Retention</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Without investment in development and engagement, burnout and turnover rise – your best people walk away, taking your investment with them.
-                </p>
-              </div>
-            </div>
-            
-            {/* Expanding overlay animation */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-white transform origin-bottom transition-all duration-700 ease-out scale-y-100 group-hover:scale-y-[3] opacity-0 group-hover:opacity-100 z-20"></div>
-            
-            {/* Hover state: Text top, image bottom */}
-            <div className="absolute inset-0 overflow-hidden z-30">
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:delay-[600ms]">
-                <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
-                  <h3 className="font-serif text-2xl font-bold text-primary mb-3">Talent Retention</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    High performers are leaving for companies that invest in their growth and development.
-                  </p>
-                </div>
-                <div className="h-2/3 overflow-hidden">
-                  <img src={ASSETS.WHY_COACHING_2_5} alt="" className="w-full h-full object-cover" />
-                </div>
-              </div>
-              {/* Downward expanding reveal mask */}
-              <div className="absolute inset-0 bg-white transform origin-top transition-transform duration-500 ease-in-out -translate-y-full group-hover:translate-y-full group-hover:delay-[400ms] z-40"></div>
-            </div>
-          </motion.div>
-          
-          {/* Box 3 - Revenue Targets */}
-          <motion.div 
-            className="h-[32rem] overflow-hidden rounded-2xl border border-stone-200 shadow-lg bg-white relative group"
-            variants={scaleFadeVariants}
-          >
-            {/* Default state: Image top, text bottom */}
-            <div className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-0 group-hover:delay-200 z-10">
-              <div className="h-2/3 overflow-hidden">
-                <img src={ASSETS.WHY_COACHING_3} alt="" className="w-full h-full object-cover" />
-              </div>
-              <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
-                <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Revenue Targets</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Revenue targets are either falling short or leaving growth on the table – competitors are gaining ground.
-                </p>
-              </div>
-            </div>
-            
-            {/* Expanding overlay animation */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-white transform origin-bottom transition-all duration-700 ease-out scale-y-100 group-hover:scale-y-[3] opacity-0 group-hover:opacity-100 z-20"></div>
-            
-            {/* Hover state: Text top, image bottom */}
-            <div className="absolute inset-0 overflow-hidden z-30">
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:delay-[600ms]">
-                <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
-                  <h3 className="font-serif text-2xl font-bold text-primary mb-3">Revenue Targets</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Missed opportunities and poor execution are preventing your growth goals.
-                  </p>
-                </div>
-                <div className="h-2/3 overflow-hidden">
-                  <img src={ASSETS.WHY_COACHING_3_5} alt="" className="w-full h-full object-cover" />
-                </div>
-              </div>
-              {/* Downward expanding reveal mask */}
-              <div className="absolute inset-0 bg-white transform origin-top transition-transform duration-500 ease-in-out -translate-y-full group-hover:translate-y-full group-hover:delay-[400ms] z-40"></div>
-            </div>
-          </motion.div>
-        </motion.div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {cards.map((card, index) => (
+            <Card 
+              key={card.title}
+              {...card}
+              delay={index * 0.1}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
-};
+});
+
+WhyCoaching.displayName = 'WhyCoaching';
 
 export default WhyCoaching;

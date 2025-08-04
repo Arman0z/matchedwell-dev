@@ -6,7 +6,7 @@ interface SectionTagProps {
   className?: string;
 }
 
-const SectionTag: React.FC<SectionTagProps> = ({ label, className = '' }) => {
+const SectionTag = React.memo<SectionTagProps>(({ label, className = '' }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -28,6 +28,8 @@ const SectionTag: React.FC<SectionTagProps> = ({ label, className = '' }) => {
       </div>
     </motion.div>
   );
-};
+});
+
+SectionTag.displayName = 'SectionTag';
 
 export default SectionTag;

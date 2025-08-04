@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ComingSoon: React.FC = () => {
+const ComingSoon = React.memo(() => {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-6">
       <div className="text-center max-w-xl mx-auto animate-fade-in">
@@ -47,6 +47,8 @@ const ComingSoon: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+ComingSoon.displayName = 'ComingSoon';
 
 export default ComingSoon;

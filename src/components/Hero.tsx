@@ -1,4 +1,5 @@
 import { motion, Variants } from 'framer-motion';
+import { ASSETS } from '../constants/assets';
 
 const Hero: React.FC = () => {
   const containerVariants: Variants = {
@@ -28,7 +29,7 @@ const Hero: React.FC = () => {
     <section className="relative w-full h-screen overflow-hidden">
       {/* Background Image - Full Screen */}
       <motion.img 
-        src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/matchedwell_hero.png" 
+        src={ASSETS.HERO_BG} 
         alt="Executive coaching" 
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
@@ -69,7 +70,7 @@ const Hero: React.FC = () => {
             variants={itemVariants}
           >
             <img 
-              src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/matchedwell_logo_white.svg"
+              src={ASSETS.LOGO_WHITE}
               alt="MatchedWell"
               className="h-96 md:h-[32rem] lg:h-[40rem] w-auto max-w-[90vw]"
             />

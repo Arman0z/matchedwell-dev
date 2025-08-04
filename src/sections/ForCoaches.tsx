@@ -17,10 +17,16 @@ const simpleVariants = {
 };
 
 const imageVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: { 
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" as const }
+    scale: 1,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.25, 0.1, 0.25, 1.0],
+      opacity: { duration: 0.6 },
+      scale: { duration: 0.8 }
+    }
   }
 };
 
@@ -30,24 +36,27 @@ const ForCoaches = React.memo<ForCoachesProps>(({ id = "for-coaches" }) => {
       <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16 px-8 lg:px-16">
         {/* Left side image with overlay */}
         <motion.div 
-          className="relative w-full lg:w-1/2 h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1"
+          className="relative w-full lg:w-[45%] h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={imageVariants}
         >
-          <img 
+          <motion.img 
             src={ASSETS.FOR_COACHES} 
             alt="Professional Coach"
             className="w-full h-full object-cover"
             loading="lazy"
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1.0] }}
           />
           
           {/* Overlay card */}
-          <div className="absolute top-8 left-8 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-6 max-w-sm">
-            <h3 className="font-serif text-2xl font-bold text-gray-900 mb-2">Only 3% of Coaches Make the Cut</h3>
-            <p className="font-sans text-gray-600">
-              Our rigorous vetting ensures you're joining an exclusive network of world-class coaches serving exceptional leaders.
+          <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-4 max-w-xs">
+            <h3 className="font-serif text-xl font-bold text-gray-900 mb-1.5">Join Our Elite Network</h3>
+            <p className="font-sans text-sm text-gray-600">
+              Work with Fortune 500 executives and high-growth leaders who are ready to invest in transformation
             </p>
           </div>
           
@@ -79,7 +88,7 @@ const ForCoaches = React.memo<ForCoachesProps>(({ id = "for-coaches" }) => {
               <div>
                 <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Pre-Vetted Executive Clients Only</h3>
                 <p className="font-sans text-gray-600">
-                  Work exclusively with C-suite leaders and high-performers who are invested, engaged, and ready for change. No tire-kickers, no budget concerns.
+                  Work exclusively with high-performers who are invested, engaged, and ready for change. Every client is committed to growth and values the transformative power of coaching.
                 </p>
               </div>
             </div>

@@ -17,10 +17,16 @@ const simpleVariants = {
 };
 
 const imageVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: { 
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" as const }
+    scale: 1,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.25, 0.1, 0.25, 1.0],
+      opacity: { duration: 0.6 },
+      scale: { duration: 0.8 }
+    }
   }
 };
 
@@ -81,7 +87,7 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
           </div>
           
           <Button>
-            Get Your Custom Talent Proposal
+            Book a Consultation Today
           </Button>
         </motion.div>
         
@@ -93,11 +99,14 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
           viewport={{ once: true, amount: 0.3 }}
           variants={imageVariants}
         >
-          <img 
+          <motion.img 
             src={ASSETS.FOR_BUSINESS} 
             alt="Business professionals in meeting"
             className="w-full h-full object-cover"
             loading="lazy"
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1.0] }}
           />
           
         </motion.div>

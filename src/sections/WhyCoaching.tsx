@@ -28,13 +28,14 @@ const cardVariants = {
 interface CardProps {
   title: string;
   description: string;
+  hoverTitle: string;
   hoverDescription: string;
   image: string;
   hoverImage: string;
   delay: number;
 }
 
-const Card = React.memo<CardProps>(({ title, description, hoverDescription, image, hoverImage, delay }) => {
+const Card = React.memo<CardProps>(({ title, description, hoverTitle, hoverDescription, image, hoverImage, delay }) => {
   const [hoverImageLoaded, setHoverImageLoaded] = useState(false);
 
   // Preload hover image when card comes into view
@@ -77,7 +78,7 @@ const Card = React.memo<CardProps>(({ title, description, hoverDescription, imag
         <div className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:delay-300">
           <div className="h-1/3 p-8 flex flex-col justify-center bg-white">
             <h3 className="font-serif text-2xl font-bold text-primary mb-3 transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-              {title}
+              {hoverTitle}
             </h3>
             <p className="text-gray-600 leading-relaxed transform transition-all duration-500 delay-75 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
               {hoverDescription}
@@ -106,22 +107,25 @@ const WhyCoaching = React.memo<WhyCoachingProps>(({ id = "why-coaching" }) => {
   const cards = [
     {
       title: "Limited Bandwidth",
-      description: "Top performers promoted for individual success now juggle untrained leadership duties – leaving less time for individual contribution, to grow teams and drive revenue.",
-      hoverDescription: "Precision-matched coaches help leaders delegate effectively, prioritize strategically, and reclaim 15+ hours per week for high-impact work. Transform firefighters into visionaries.",
+      description: "Your best leaders are drowning in daily operations instead of driving strategy.",
+      hoverTitle: "Strategic Focus",
+      hoverDescription: "Reclaim 15+ hours per week for high-impact work with precision-matched executive coaching.",
       image: ASSETS.WHY_COACHING_1,
       hoverImage: ASSETS.WHY_COACHING_1_5
     },
     {
       title: "Talent Retention",
-      description: "Without investment in development and engagement, burnout and turnover rise – your best people walk away, taking your investment with them.",
-      hoverDescription: "Individual coaching creates a culture where top talent thrives. Reduce turnover by 40%, save recruitment costs, and build a reputation as an employer who invests in excellence.",
+      description: "Top performers leave for companies that invest in their growth.",
+      hoverTitle: "Employee Loyalty",
+      hoverDescription: "Reduce turnover by 40% and save recruitment costs with individual development.",
       image: ASSETS.WHY_COACHING_2,
       hoverImage: ASSETS.WHY_COACHING_2_5
     },
     {
       title: "Revenue Targets",
-      description: "Revenue targets are either falling short or leaving growth on the table – competitors are gaining ground.",
-      hoverDescription: "When your people operate at peak performance, revenue follows. Our clients see 20-30% improvement in team productivity and measurable impact on bottom-line results.",
+      description: "Competitors are gaining ground while you leave growth on the table.",
+      hoverTitle: "Growth Acceleration",
+      hoverDescription: "See 20-30% improvement in team productivity and measurable revenue impact.",
       image: ASSETS.WHY_COACHING_3,
       hoverImage: ASSETS.WHY_COACHING_3_5
     }
@@ -144,14 +148,20 @@ const WhyCoaching = React.memo<WhyCoachingProps>(({ id = "why-coaching" }) => {
           viewport={{ once: true, amount: 0.3 }}
           variants={simpleVariants}
         >
-          <SectionTag label="Why Coaching" className="text-gray-700" />
+          <div className="inline-block mb-8">
+            <div className="bg-primary/10 backdrop-blur-sm border border-primary/30 px-8 py-3 rounded-full">
+              <span className="text-sm font-sans font-semibold tracking-wider uppercase text-primary">
+                Why Coaching
+              </span>
+            </div>
+          </div>
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
             The <span className="text-primary">Secret Advantage</span> of<br />
             High-Performance Organizations
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-8" />
           <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto">
-            Every legend has a coach. Companies see an average ROI of 7x their coaching investment. <br className="hidden lg:block" />It's time to unlock the full potential of your top talent.
+            Your best people are your biggest investment - and your greatest opportunity for growth. <br className="hidden lg:block" />MatchedWell ensures they reach their full potential without adding to your workload.
           </p>
         </motion.div>
         

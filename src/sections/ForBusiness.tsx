@@ -50,11 +50,7 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
           
           <div className="space-y-6 mb-10">
             <div className="flex items-start">
-              <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
+              <div className="flex-shrink-0 w-1 h-16 bg-primary mr-6"></div>
               <div>
                 <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Strategic Talent Selection</h3>
                 <p className="font-sans text-gray-600">
@@ -64,11 +60,7 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
             </div>
             
             <div className="flex items-start">
-              <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
+              <div className="flex-shrink-0 w-1 h-16 bg-primary mr-6"></div>
               <div>
                 <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Individual Deep Dive</h3>
                 <p className="font-sans text-gray-600">
@@ -78,11 +70,7 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
             </div>
             
             <div className="flex items-start">
-              <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
+              <div className="flex-shrink-0 w-1 h-16 bg-primary mr-6"></div>
               <div>
                 <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Measurable Impact</h3>
                 <p className="font-sans text-gray-600">

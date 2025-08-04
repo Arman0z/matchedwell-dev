@@ -59,7 +59,9 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
           viewport={eagerViewport}
           variants={staggerContainerVariants}
         >
-          <SectionTag label="Contact Us" className="text-white" />
+          <p className="text-primary uppercase font-sans font-medium text-base tracking-wider mb-6">
+            Contact Us
+          </p>
           <motion.h2 
             className="font-serif mb-4 text-center whitespace-nowrap"
             variants={fadeInVariants}
@@ -75,7 +77,7 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
             className="font-sans text-xl text-gray-300 max-w-2xl mx-auto"
             variants={fadeInVariants}
           >
-            Start building your winning formula today. Let's discuss how MatchedWell can elevate your leadership.
+            Start building your winning formula today. Let's discuss how MatchedWell can elevate your business.
           </motion.p>
         </motion.div>
 

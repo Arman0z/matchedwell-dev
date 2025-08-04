@@ -38,6 +38,28 @@
   }
 }
 
+/* Image loading optimizations */
+@layer utilities {
+  /* Smooth image loading */
+  .image-loading-optimized {
+    @apply will-change-transform;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Prevent layout shift during image loading */
+  .image-container {
+    @apply relative overflow-hidden;
+    contain: layout style paint;
+  }
+  
+  /* Performance optimizations for images */
+  .optimized-image {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px 600px;
+  }
+}
+
 /* 3D Flip Card Utilities */
 @layer utilities {
   .perspective-1000 {

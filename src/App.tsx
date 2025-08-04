@@ -7,6 +7,8 @@ import ForBusiness from './sections/ForBusiness';
 import ForCoaches from './sections/ForCoaches';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
+import { preloadCriticalImages } from './utils/imagePreloader';
+import { ASSETS } from './constants/assets';
 
 function App() {
   useEffect(() => {
@@ -18,6 +20,14 @@ function App() {
         loadingScreen.remove();
       }, 500);
     }
+
+    // Preload critical images for better performance
+    preloadCriticalImages([
+      ASSETS.FOR_BUSINESS,
+      ASSETS.FOR_COACHES,
+      ASSETS.WHO_WE_ARE,
+      ASSETS.CONTACT
+    ]);
   }, []);
 
   return (

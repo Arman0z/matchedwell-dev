@@ -109,7 +109,9 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
           viewport={eagerViewport}
           variants={staggerContainerVariants}
         >
-          <SectionTag label="Who We Are" className="text-white" />
+          <p className="text-primary uppercase font-sans font-medium text-base tracking-wider mb-6">
+            Who We Are
+          </p>
           <motion.h2 
             className="font-serif text-5xl lg:text-6xl mb-4"
             variants={fadeInVariants}
@@ -117,10 +119,8 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
             Start Building Your <span className="text-primary">Winning Formula</span>
           </motion.h2>
           <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8"
+            className="w-24 h-1 bg-primary mx-auto mb-8"
             variants={fadeInVariants}
-            animate={{ scaleX: [0.8, 1, 0.8] }}
-            transition={{ duration: 3, repeat: Infinity }}
           />
           <motion.p 
             className="font-sans text-xl text-gray-300 max-w-3xl mx-auto"
@@ -200,59 +200,76 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 ))}
               </div>
 
-              {/* External descriptions positioned around the circle */}
+              {/* External descriptions and numbers positioned around the circle */}
               {processSteps.map((step) => (
-                <AnimatePresence key={`desc-${step.id}`}>
-                  {hoveredQuadrant === step.id && (
-                    <motion.div
-                      className={`absolute w-64 lg:w-80 ${getDescriptionStyles(step.position)}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                    >
-                      <div>
-                        {step.position.includes('right') ? (
-                          <>
-                            <motion.div 
-                              className="w-16 h-1 bg-primary/60 mb-4"
-                              initial={{ scaleX: 0 }}
-                              animate={{ scaleX: 1 }}
-                              transition={{ duration: 0.3, delay: 0.1 }}
-                              style={{ transformOrigin: 'left' }}
-                            />
-                            <motion.p 
-                              className="font-sans text-gray-400 leading-relaxed"
-                              initial={{ y: 10 }}
-                              animate={{ y: 0 }}
-                              transition={{ duration: 0.3, delay: 0.2 }}
-                            >
-                              {step.description}
-                            </motion.p>
-                          </>
-                        ) : (
-                          <>
-                            <motion.div 
-                              className="w-16 h-1 bg-primary/60 mb-4 ml-auto"
-                              initial={{ scaleX: 0 }}
-                              animate={{ scaleX: 1 }}
-                              transition={{ duration: 0.3, delay: 0.1 }}
-                              style={{ transformOrigin: 'right' }}
-                            />
-                            <motion.p 
-                              className="font-sans text-gray-400 leading-relaxed"
-                              initial={{ y: 10 }}
-                              animate={{ y: 0 }}
-                              transition={{ duration: 0.3, delay: 0.2 }}
-                            >
-                              {step.description}
-                            </motion.p>
-                          </>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div key={`desc-${step.id}`} className={`absolute w-64 lg:w-80 ${getDescriptionStyles(step.position)}`}>
+                  <AnimatePresence mode="wait">
+                    {hoveredQuadrant === step.id ? (
+                      <motion.div
+                        key="description"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                      >
+                        <div>
+                          {step.position.includes('right') ? (
+                            <>
+                              <motion.div 
+                                className="w-16 h-1 bg-primary/60 mb-4"
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: 1 }}
+                                transition={{ duration: 0.3, delay: 0.1 }}
+                                style={{ transformOrigin: 'left' }}
+                              />
+                              <motion.p 
+                                className="font-sans text-gray-400 leading-relaxed"
+                                initial={{ y: 10 }}
+                                animate={{ y: 0 }}
+                                transition={{ duration: 0.3, delay: 0.2 }}
+                              >
+                                {step.description}
+                              </motion.p>
+                            </>
+                          ) : (
+                            <>
+                              <motion.div 
+                                className="w-16 h-1 bg-primary/60 mb-4 ml-auto"
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: 1 }}
+                                transition={{ duration: 0.3, delay: 0.1 }}
+                                style={{ transformOrigin: 'right' }}
+                              />
+                              <motion.p 
+                                className="font-sans text-gray-400 leading-relaxed"
+                                initial={{ y: 10 }}
+                                animate={{ y: 0 }}
+                                transition={{ duration: 0.3, delay: 0.2 }}
+                              >
+                                {step.description}
+                              </motion.p>
+                            </>
+                          )}
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="number"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="flex items-center justify-center"
+                      >
+                        <div className={`flex items-center ${step.position.includes('right') ? 'justify-start' : 'justify-end'}`}>
+                          <span className="font-serif text-4xl font-bold text-white">
+                            {step.id}
+                          </span>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
             </div>
           </div>

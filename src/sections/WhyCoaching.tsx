@@ -147,21 +147,22 @@ const WhyCoaching = React.memo<WhyCoachingProps>(({ id = "why-coaching" }) => {
           viewport={{ once: true, amount: 0.3 }}
           variants={simpleVariants}
         >
-          <div className="inline-block mb-8">
-            <div className="bg-primary/10 backdrop-blur-sm border border-primary/30 px-8 py-3 rounded-full">
-              <span className="text-sm font-sans font-semibold tracking-wider uppercase text-primary">
-                Why Coaching
-              </span>
-            </div>
-          </div>
+          <p className="text-primary uppercase font-sans font-medium text-base tracking-wider mb-6">
+            Why Coaching
+          </p>
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
             The <span className="text-primary">Secret Advantage</span> of<br />
             High-Performance Organizations
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-8" />
-          <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto">
-            Your best people are your biggest investment - and your greatest opportunity for growth. <br className="hidden lg:block" />MatchedWell ensures they reach their full potential without adding to your workload.
-          </p>
+          <div className="max-w-5xl mx-auto space-y-4">
+            <p className="font-sans text-xl text-gray-600">
+              Your best people are your biggest investment - and your greatest opportunity for growth.
+            </p>
+            <p className="font-sans text-xl text-gray-600">
+              MatchedWell ensures they reach their full potential without adding to your workload.
+            </p>
+          </div>
         </motion.div>
         
         <div className="grid md:grid-cols-3 gap-8">

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { fadeInVariants, staggerContainerVariants, defaultViewport, fastStaggerContainerVariants } from '../hooks/useScrollAnimation';
+import { ASSETS } from '../constants/assets';
 
 const Footer = () => {
   return (
@@ -12,11 +13,20 @@ const Footer = () => {
           viewport={defaultViewport}
           variants={staggerContainerVariants}
         >
-          <motion.div variants={fadeInVariants}>
-            <h3 className="font-serif text-3xl mb-4">MatchedWell</h3>
-            <p className="font-sans text-gray-400 text-sm leading-relaxed">
-              Excellence is rarely achieved solo. We connect visionary leaders with world-class coaches.
-            </p>
+          <motion.div variants={fadeInVariants} className="relative">
+            <div className="absolute z-10" style={{ left: '-7px', top: '-83px' }}>
+              <img 
+                src={ASSETS.LOGO_WHITE}
+                alt="MatchedWell"
+                className="h-48 w-auto"
+              />
+            </div>
+            <div className="pt-1">
+              <h4 className="font-serif text-lg mb-4 opacity-0">Hidden Title</h4>
+              <p className="font-sans text-gray-400 text-sm leading-relaxed">
+                Excellence is rarely achieved solo. We connect visionary leaders with world-class coaches.
+              </p>
+            </div>
           </motion.div>
           
           <motion.div variants={fadeInVariants}>
@@ -62,7 +72,7 @@ const Footer = () => {
           viewport={defaultViewport}
           variants={fadeInVariants}
         >
-          <p>&copy; 2024 MatchedWell. All rights reserved.</p>
+          <p>&copy; 2025 MatchedWell. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>

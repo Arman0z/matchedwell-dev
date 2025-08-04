@@ -2,30 +2,25 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import { ASSETS } from '../constants/assets';
+import { fadeInVariants, defaultViewport } from '../hooks/useScrollAnimation';
 
 interface ForBusinessProps {
   id?: string;
 }
 
-const simpleVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-};
-
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+// Optimized image variants for smooth loading
+const imageContainerVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20
+  },
   visible: { 
     opacity: 1,
-    scale: 1,
+    y: 0,
     transition: { 
-      duration: 0.8, 
-      ease: "easeInOut" as const,
-      opacity: { duration: 0.6 },
-      scale: { duration: 0.8 }
+      duration: 0.6, 
+      ease: "easeOut" as const,
+      delay: 0.2
     }
   }
 };
@@ -39,15 +34,15 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
           className="flex-1 flex flex-col justify-center max-w-2xl"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={simpleVariants}
+          viewport={defaultViewport}
+          variants={fadeInVariants}
         >
-          <p className="text-primary uppercase font-sans font-medium text-sm tracking-wider mb-6">
-            FUEL PERFORMANCE. DRIVE SUCCESS.
+          <p className="text-primary uppercase font-sans font-medium text-base tracking-wider mb-6">
+            For Business
           </p>
           
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Transform Today's Contributors into Tomorrow's Leaders.
+            Transform Today's Contributors into Tomorrow's <span className="text-primary">Leaders</span>
           </h2>
           
           <p className="font-sans text-lg text-gray-600 mb-10">
@@ -93,20 +88,19 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
         
         {/* Right side image with stats overlay */}
         <motion.div 
-          className="relative w-full lg:w-1/2 h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl"
+          className="relative w-full lg:w-1/2 h-[700px] lg:h-[800px] rounded-2xl overflow-hidden shadow-2xl"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={imageVariants}
+          viewport={{ once: true, amount: 0.1, margin: "0px 0px -100px 0px" }}
+          variants={imageContainerVariants}
         >
-          <motion.img 
+          <img 
             src={ASSETS.FOR_BUSINESS} 
             alt="Business professionals in meeting"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105 will-change-transform"
             loading="lazy"
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            decoding="async"
+            style={{ contentVisibility: 'auto' }}
           />
           
         </motion.div>

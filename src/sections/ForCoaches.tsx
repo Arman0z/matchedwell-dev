@@ -2,30 +2,25 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import { ASSETS } from '../constants/assets';
+import { fadeInVariants, defaultViewport } from '../hooks/useScrollAnimation';
 
 interface ForCoachesProps {
   id?: string;
 }
 
-const simpleVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-};
-
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+// Optimized image variants for smooth loading
+const imageContainerVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20
+  },
   visible: { 
     opacity: 1,
-    scale: 1,
+    y: 0,
     transition: { 
-      duration: 0.8, 
-      ease: "easeInOut" as const,
-      opacity: { duration: 0.6 },
-      scale: { duration: 0.8 }
+      duration: 0.6, 
+      ease: "easeOut" as const,
+      delay: 0.2
     }
   }
 };
@@ -36,29 +31,33 @@ const ForCoaches = React.memo<ForCoachesProps>(({ id = "for-coaches" }) => {
       <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16 px-8 lg:px-16">
         {/* Left side image with overlay */}
         <motion.div 
-          className="relative w-full lg:w-[45%] h-[550px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1"
+          className="relative w-full lg:w-[45%] h-[580px] lg:h-[720px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={imageVariants}
+          viewport={{ once: true, amount: 0.1, margin: "0px 0px -100px 0px" }}
+          variants={imageContainerVariants}
         >
-          <motion.img 
+          <img 
             src={ASSETS.FOR_COACHES} 
             alt="Professional Coach"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105 will-change-transform"
             loading="lazy"
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            decoding="async"
+            style={{ contentVisibility: 'auto' }}
           />
           
           {/* Overlay card */}
-          <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-4 max-w-xs">
+          <motion.div 
+            className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-4 max-w-xs"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+          >
             <h3 className="font-serif text-xl font-bold text-gray-900 mb-1.5">Join Our Elite Network</h3>
             <p className="font-sans text-sm text-gray-600">
               Work with Fortune 500 executives and high-growth leaders who are ready to invest in transformation
             </p>
-          </div>
+          </motion.div>
           
         </motion.div>
         
@@ -67,15 +66,15 @@ const ForCoaches = React.memo<ForCoachesProps>(({ id = "for-coaches" }) => {
           className="flex-1 flex flex-col justify-center order-1 lg:order-2 max-w-2xl"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={simpleVariants}
+          viewport={defaultViewport}
+          variants={fadeInVariants}
         >
-          <p className="text-primary uppercase font-sans font-medium text-sm tracking-wider mb-6">
-            EXPAND YOUR IMPACT. GROW YOUR PRACTICE.
+          <p className="text-primary uppercase font-sans font-medium text-base tracking-wider mb-6">
+            For Coaches
           </p>
           
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            We Engineer Perfect Matches.
+            Coaches, Grow Your Practice <span className="text-primary">Stress-Free</span>
           </h2>
           
           <p className="font-sans text-lg text-gray-600 mb-10">

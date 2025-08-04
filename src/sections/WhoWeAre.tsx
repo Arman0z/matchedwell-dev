@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
-import SectionTag from '../components/SectionTag';
 import { ASSETS } from '../constants/assets';
 
 interface WhoWeAreProps {

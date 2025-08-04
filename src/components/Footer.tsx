@@ -24,7 +24,7 @@ const Footer = () => {
             <div className="pt-1">
               <h4 className="font-serif text-lg mb-4 opacity-0">Hidden Title</h4>
               <p className="font-sans text-gray-400 text-sm leading-relaxed">
-                Excellence is rarely achieved solo. We connect visionary leaders with world-class coaches.
+                Excellence is rarely achieved solo. We connect high-performing professionals with world-class coaches.
               </p>
             </div>
           </motion.div>

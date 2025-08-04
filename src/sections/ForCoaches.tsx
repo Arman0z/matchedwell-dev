@@ -105,7 +105,7 @@ const ForCoaches = React.memo<ForCoachesProps>(({ id = "for-coaches" }) => {
             <div className="flex items-start">
               <div className="flex-shrink-0 w-1 h-16 bg-primary mr-6"></div>
               <div>
-                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Long-Term Engagements, Premium Rates</h3>
+                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Long-Term Engagements</h3>
                 <p className="font-sans text-gray-600">
                   Our clients commit to 6-12 month engagements minimum. Build deep relationships, see real transformation, and earn what you're worth.
                 </p>

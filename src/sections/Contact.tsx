@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInVariants, staggerContainerVariants, defaultViewport, eagerViewport } from '../hooks/useScrollAnimation';
-import SectionTag from '../components/SectionTag';
 import Button from '../components/Button';
 import { Input, TextArea, Select } from '../components/FormFields';
 import { ASSETS } from '../constants/assets';

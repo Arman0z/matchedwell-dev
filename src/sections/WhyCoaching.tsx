@@ -26,7 +26,7 @@ const WhyCoaching: React.FC<WhyCoachingProps> = ({ id = "why-coaching" }) => {
         >
           <SectionTag label="Why Coaching" className="text-gray-700" />
           <motion.h2 
-            className="font-serif text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+            className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
             variants={fadeInVariants}
           >
             The <span className="text-primary">Secret Advantage</span> of<br />

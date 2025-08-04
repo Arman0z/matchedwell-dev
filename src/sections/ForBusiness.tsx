@@ -8,129 +8,139 @@ interface ForBusinessProps {
 
 const ForBusiness: React.FC<ForBusinessProps> = ({ id = "for-business" }) => {
   return (
-    <section id={id} className="relative py-20 px-6 lg:px-8 bg-white">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0,0,0,.05) 35px, rgba(0,0,0,.05) 70px)`,
-        }}></div>
-      </div>
-      
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <motion.div 
-          className="text-center mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={eagerViewport}
-          variants={staggerContainerVariants}
-        >
-          <SectionTag label="For Business" className="text-gray-700" />
-          <motion.h2 
-            className="font-serif text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
-            variants={fadeInVariants}
-          >
-            Fuel Performance. Retain Talent. Drive Revenue.
-          </motion.h2>
-          <motion.div
-            className="w-24 h-1 bg-primary mx-auto mb-8"
-            variants={fadeInVariants}
-          />
-          <motion.p 
-            className="font-sans text-xl text-gray-600 max-w-3xl mx-auto"
-            variants={fadeInVariants}
-          >
-            Transform your high-potential leaders into revenue-driving executives with our precision-matched coaching programs.
-          </motion.p>
-        </motion.div>
-        
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id={id} className="relative bg-white overflow-hidden py-16 lg:py-24">
+      <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16 px-8 lg:px-16">
+        {/* Left side content */}
+        <div className="flex-1 flex flex-col justify-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={defaultViewport}
+            viewport={eagerViewport}
             variants={staggerContainerVariants}
+            className="max-w-2xl"
           >
-            <div className="space-y-6">
+            <motion.p 
+              className="text-primary uppercase font-sans font-medium text-sm tracking-wider mb-6"
+              variants={fadeInVariants}
+            >
+              FOR FORWARD-THINKING ORGANIZATIONS
+            </motion.p>
+            
+            <motion.h2 
+              className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+              variants={fadeInVariants}
+            >
+              Transform Today's Contributors into Tomorrow's Leaders.
+            </motion.h2>
+            
+            <motion.p 
+              className="font-sans text-lg text-gray-600 mb-10"
+              variants={fadeInVariants}
+            >
+              Build a leadership pipeline that scales with your ambitions. Our precision-matched coaches help your high-performers unlock their full potential while staying aligned with your culture and strategic goals.
+            </motion.p>
+            
+            <div className="space-y-6 mb-10">
               <motion.div 
-                className="flex items-start space-x-4"
+                className="flex items-start"
                 variants={slideFromLeftVariants}
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-elegant rounded-2xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-gray-900 mb-2">ROI You Can Count, Culture You Can Feel.</h3>
+                  <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Strategic Talent Selection</h3>
                   <p className="font-sans text-gray-600">
-                    Our matched coaches deliver measurable business impact while strengthening your unique culture. Average 7× ROI with improved leadership effectiveness and team performance.
+                    We identify your highest-potential leaders and match them with coaches who understand your industry, culture, and objectives.
                   </p>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="flex items-start space-x-4"
+                className="flex items-start"
                 variants={slideFromLeftVariants}
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-elegant rounded-2xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-gray-900 mb-2">Individualized, Not Pre-Packaged.</h3>
+                  <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Individual Deep Dive</h3>
                   <p className="font-sans text-gray-600">
-                    Every engagement is custom-designed based on comprehensive assessments, your strategic objectives, and the individual's unique development needs.
+                    Each engagement begins with comprehensive assessments to understand strengths, gaps, and growth opportunities.
                   </p>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="flex items-start space-x-4"
+                className="flex items-start"
                 variants={slideFromLeftVariants}
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-elegant rounded-2xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-gray-900 mb-2">High-Touch, Executive-Ready Support.</h3>
+                  <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Measurable Impact</h3>
                   <p className="font-sans text-gray-600">
-                    From C-suite to emerging leaders, our coaches understand the unique pressures of executive roles and provide confidential, strategic guidance.
+                    Track progress with our proprietary ROI framework that connects coaching outcomes to business results.
                   </p>
                 </div>
               </motion.div>
             </div>
             
             <motion.div 
-              className="mt-8"
               variants={fadeInVariants}
             >
-              <button className="group inline-flex items-center justify-center bg-gradient-elegant text-white px-8 py-4 rounded-full font-sans font-medium text-lg hover:shadow-elegant-hover transform hover:-translate-y-1 transition-all duration-300">
-                Drive Measurable ROI
-                <svg className="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+              <button className="group inline-flex items-center justify-center bg-primary text-white px-8 py-4 font-sans font-medium text-lg hover:bg-blue-700 transition-all duration-300">
+                Get Your Custom Talent Proposal
               </button>
             </motion.div>
           </motion.div>
-          
-          <motion.div 
-            className="relative"
-            initial="hidden"
-            whileInView="visible"
-            viewport={defaultViewport}
-            variants={scaleFadeVariants}
-          >
-            <div className="absolute -inset-4 bg-gradient-to-r from-deep-teal/20 to-light-teal/20 rounded-3xl blur-2xl"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-              alt="Business professionals in meeting"
-              className="relative rounded-2xl shadow-xl"
-            />
-          </motion.div>
         </div>
+        
+        {/* Right side image with stats overlay */}
+        <motion.div 
+          className="relative w-full lg:w-1/2 h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={scaleFadeVariants}
+        >
+          <img 
+            src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/forbusiness.png" 
+            alt="Business professionals in meeting"
+            className="w-full h-full object-cover"
+          />
+          
+          {/* Stats overlay */}
+          <motion.div 
+            className="absolute bottom-0 left-0 right-0 p-6 lg:p-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={defaultViewport}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-xl p-6 grid grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="font-serif text-3xl lg:text-4xl font-bold text-primary mb-1">87%</div>
+                <div className="font-sans text-xs lg:text-sm text-gray-600">Performance Increase</div>
+              </div>
+              <div>
+                <div className="font-serif text-3xl lg:text-4xl font-bold text-primary mb-1">94%</div>
+                <div className="font-sans text-xs lg:text-sm text-gray-600">Retention Rate</div>
+              </div>
+              <div>
+                <div className="font-serif text-3xl lg:text-4xl font-bold text-primary mb-1">7.2×</div>
+                <div className="font-sans text-xs lg:text-sm text-gray-600">Revenue Growth</div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

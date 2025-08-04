@@ -19,7 +19,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
         <img 
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=800&fit=crop"
+          src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/whoweare.png"
           alt="Executive office"
           className="w-full h-full object-cover opacity-30"
         />
@@ -35,10 +35,10 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
         >
           <SectionTag label="Who We Are" className="text-white" />
           <motion.h2 
-            className="font-serif text-5xl md:text-6xl mb-4"
+            className="font-serif text-5xl lg:text-6xl mb-4"
             variants={fadeInVariants}
           >
-            Precision Matching, Built for Impact.
+            Start Building Your Winning Formula
           </motion.h2>
           <motion.div
             className="w-24 h-1 bg-primary mx-auto mb-8"
@@ -52,51 +52,79 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
           </motion.p>
         </motion.div>
         
+        {/* Circle with 4 Quadrants */}
         <motion.div 
-          className="grid md:grid-cols-4 gap-8"
+          className="flex justify-center items-center my-16"
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
-          variants={staggerContainerVariants}
+          variants={fadeInVariants}
         >
-          {[
-            {
-              step: 1,
-              title: "Strategic Assessment",
-              description: "Deep dive into your organization's culture, goals, and unique challenges to understand exactly what success looks like."
-            },
-            {
-              step: 2,
-              title: "Precision Matching",
-              description: "Leverage our proprietary algorithm and human expertise to find coaches who align with your specific needs."
-            },
-            {
-              step: 3,
-              title: "Seamless Onboarding",
-              description: "Structured kickoff process ensures immediate alignment between coaches, leaders, and organizational objectives."
-            },
-            {
-              step: 4,
-              title: "Continuous Optimization",
-              description: "Regular progress tracking and adjustments to maximize ROI and ensure lasting transformation."
-            }
-          ].map((item) => (
-            <motion.div 
-              key={item.step} 
-              className="relative group"
-              variants={slideFromLeftVariants}
-            >
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 h-full hover:bg-white/20 transition-all duration-300">
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-primary text-white flex items-center justify-center font-serif text-2xl">
-                  {item.step}
+          <div className="relative w-[600px] h-[600px]">
+            {/* Main circle container */}
+            <div className="absolute inset-0 rounded-full border-4 border-white/30 bg-white/5 backdrop-blur-sm">
+              {/* Vertical divider */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-white/30 -translate-x-1/2"></div>
+              {/* Horizontal divider */}
+              <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/30 -translate-y-1/2"></div>
+              
+              {/* Top Left Quadrant */}
+              <motion.div 
+                className="absolute top-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
+                variants={slideFromLeftVariants}
+              >
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
+                  1
                 </div>
-                <h3 className="font-serif text-2xl mb-4 mt-4">{item.title}</h3>
-                <p className="font-sans text-gray-300">
-                  {item.description}
+                <h3 className="font-serif text-xl mb-2">Discovery Phase</h3>
+                <p className="font-sans text-sm text-gray-300">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
                 </p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+              
+              {/* Top Right Quadrant */}
+              <motion.div 
+                className="absolute top-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
+                variants={slideFromLeftVariants}
+              >
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
+                  2
+                </div>
+                <h3 className="font-serif text-xl mb-2">Strategic Alignment</h3>
+                <p className="font-sans text-sm text-gray-300">
+                  Ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                </p>
+              </motion.div>
+              
+              {/* Bottom Left Quadrant */}
+              <motion.div 
+                className="absolute bottom-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
+                variants={slideFromLeftVariants}
+              >
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
+                  3
+                </div>
+                <h3 className="font-serif text-xl mb-2">Implementation</h3>
+                <p className="font-sans text-sm text-gray-300">
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+                </p>
+              </motion.div>
+              
+              {/* Bottom Right Quadrant */}
+              <motion.div 
+                className="absolute bottom-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
+                variants={slideFromLeftVariants}
+              >
+                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-2xl font-bold mb-4">
+                  4
+                </div>
+                <h3 className="font-serif text-xl mb-2">Optimization</h3>
+                <p className="font-sans text-sm text-gray-300">
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Features Grid */}

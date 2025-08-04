@@ -16,7 +16,7 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
         <img 
-          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&h=800&fit=crop"
+          src="https://knpvhqfadqkctzgecadf.supabase.co/storage/v1/object/public/matchedwell/contactus.png"
           alt="Modern office"
           className="w-full h-full object-cover opacity-20"
         />
@@ -32,7 +32,7 @@ const Contact: React.FC<ContactProps> = ({ id = "contact" }) => {
         >
           <SectionTag label="Contact Us" className="text-white" />
           <motion.h2 
-            className="font-serif text-5xl md:text-6xl mb-4"
+            className="font-serif text-5xl lg:text-6xl mb-4 text-center"
             variants={fadeInVariants}
           >
             Ready to Transform Your Organization?

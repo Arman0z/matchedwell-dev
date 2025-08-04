@@ -63,13 +63,13 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
   const getDescriptionPosition = (position: string) => {
     switch (position) {
       case 'top-left':
-        return 'top-1/4 -left-80 text-right';
+        return 'top-0 left-0 items-start justify-start text-left';
       case 'top-right':
-        return 'top-1/4 -right-80 text-left';
+        return 'top-0 right-0 items-start justify-end text-right';
       case 'bottom-left':
-        return 'bottom-1/4 -left-80 text-right';
+        return 'bottom-0 left-0 items-end justify-start text-left';
       case 'bottom-right':
-        return 'bottom-1/4 -right-80 text-left';
+        return 'bottom-0 right-0 items-end justify-end text-right';
       default:
         return '';
     }
@@ -130,95 +130,109 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
           </motion.p>
         </motion.div>
         
-        {/* Premium Interactive Circle */}
+        {/* Premium Interactive Circle with Background Text */}
         <motion.div 
-          className="flex justify-center items-center my-20 relative"
+          className="relative mx-auto my-20 max-w-5xl"
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInVariants}
         >
-          <div className="relative w-[500px] h-[500px] lg:w-[600px] lg:h-[600px]">
-            {/* Animated rotating border */}
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: 'conic-gradient(from 0deg, #0080FF, #71C9CD, #0080FF)',
-                padding: '2px',
-              }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <div className="w-full h-full rounded-full bg-gray-900" />
-            </motion.div>
-
-            {/* Main circle container with glassmorphism */}
-            <div className="absolute inset-2 rounded-full bg-white/5 backdrop-blur-md border border-white/20 overflow-hidden">
-              {/* Animated dividers */}
-              <motion.div 
-                className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-white/30 to-transparent -translate-x-1/2"
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <motion.div 
-                className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-y-1/2"
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              />
-              
-              {/* Quadrants */}
-              {processSteps.map((step) => (
-                <motion.div
-                  key={step.id}
-                  className={`absolute w-1/2 h-1/2 ${getQuadrantStyles(step.position)} cursor-pointer group`}
-                  onHoverStart={() => setHoveredQuadrant(step.id)}
-                  onHoverEnd={() => setHoveredQuadrant(null)}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {/* Hover glow effect */}
+          {/* Background description areas */}
+          <div className="absolute inset-0 w-full h-full">
+            {processSteps.map((step) => (
+              <AnimatePresence key={`bg-${step.id}`}>
+                {hoveredQuadrant === step.id && (
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ 
-                      borderRadius: step.position.includes('top-left') ? '100% 0 0 0' :
-                                   step.position.includes('top-right') ? '0 100% 0 0' :
-                                   step.position.includes('bottom-left') ? '0 0 0 100%' :
-                                   '0 0 100% 0'
-                    }}
-                  />
-                  
-                  {/* Title only */}
-                  <div className="relative h-full flex items-center justify-center p-8">
-                    <h3 className="font-serif text-xl lg:text-2xl text-center leading-tight group-hover:text-primary transition-colors duration-300">
-                      {step.title}
-                    </h3>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* External descriptions */}
-            <AnimatePresence>
-              {processSteps.map((step) => (
-                hoveredQuadrant === step.id && (
-                  <motion.div
-                    key={`desc-${step.id}`}
-                    className={`absolute w-72 ${getDescriptionPosition(step.position)} z-30`}
-                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className={`absolute w-1/2 h-1/2 flex p-8 ${getDescriptionPosition(step.position)}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                   >
-                    <div className="bg-gray-800/90 backdrop-blur-md rounded-xl p-6 border border-primary/30 shadow-2xl">
-                      <div className="w-12 h-1 bg-primary mb-4" />
-                      <p className="font-sans text-gray-300 leading-relaxed">
+                    <div className="max-w-xs">
+                      <motion.div 
+                        className="w-16 h-1 bg-primary/60 mb-4"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                      />
+                      <motion.p 
+                        className="font-sans text-gray-400 leading-relaxed"
+                        initial={{ y: 10 }}
+                        animate={{ y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.2 }}
+                      >
                         {step.description}
-                      </p>
+                      </motion.p>
                     </div>
                   </motion.div>
-                )
-              ))}
-            </AnimatePresence>
+                )}
+              </AnimatePresence>
+            ))}
+          </div>
+
+          {/* Circle container */}
+          <div className="relative flex justify-center items-center">
+            <div className="relative w-[400px] h-[400px] lg:w-[500px] lg:h-[500px]">
+              {/* Animated rotating border */}
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: 'conic-gradient(from 0deg, #0080FF, #71C9CD, #0080FF)',
+                  padding: '2px',
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="w-full h-full rounded-full bg-gray-900" />
+              </motion.div>
+
+              {/* Main circle container with glassmorphism */}
+              <div className="absolute inset-2 rounded-full bg-white/5 backdrop-blur-md border border-white/20 overflow-hidden">
+                {/* Animated dividers */}
+                <motion.div 
+                  className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-white/30 to-transparent -translate-x-1/2"
+                  animate={{ opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <motion.div 
+                  className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-y-1/2"
+                  animate={{ opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                />
+                
+                {/* Quadrants */}
+                {processSteps.map((step) => (
+                  <motion.div
+                    key={step.id}
+                    className={`absolute w-1/2 h-1/2 ${getQuadrantStyles(step.position)} cursor-pointer group`}
+                    onHoverStart={() => setHoveredQuadrant(step.id)}
+                    onHoverEnd={() => setHoveredQuadrant(null)}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    {/* Hover glow effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ 
+                        borderRadius: step.position.includes('top-left') ? '100% 0 0 0' :
+                                     step.position.includes('top-right') ? '0 100% 0 0' :
+                                     step.position.includes('bottom-left') ? '0 0 0 100%' :
+                                     '0 0 100% 0'
+                      }}
+                    />
+                    
+                    {/* Title only */}
+                    <div className="relative h-full flex items-center justify-center p-6">
+                      <h3 className="font-serif text-lg lg:text-xl text-center leading-tight group-hover:text-primary transition-colors duration-300">
+                        {step.title}
+                      </h3>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
 

@@ -144,7 +144,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
               <AnimatePresence key={`bg-${step.id}`}>
                 {hoveredQuadrant === step.id && (
                   <motion.div
-                    className={`absolute w-1/2 h-1/2 flex p-8 ${getDescriptionPosition(step.position)}`}
+                    className={`absolute w-1/2 h-1/2 flex p-12 lg:p-16 ${getDescriptionPosition(step.position)}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

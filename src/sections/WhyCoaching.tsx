@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import SectionTag from '../components/SectionTag';
 import { ASSETS } from '../constants/assets';
 
 interface WhyCoachingProps {

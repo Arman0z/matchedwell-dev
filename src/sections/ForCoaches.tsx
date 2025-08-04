@@ -23,7 +23,7 @@ const imageVariants = {
     scale: 1,
     transition: { 
       duration: 0.8, 
-      ease: [0.25, 0.1, 0.25, 1.0],
+      ease: "easeInOut" as const,
       opacity: { duration: 0.6 },
       scale: { duration: 0.8 }
     }
@@ -49,7 +49,7 @@ const ForCoaches = React.memo<ForCoachesProps>(({ id = "for-coaches" }) => {
             loading="lazy"
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1.0] }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
           />
           
           {/* Overlay card */}

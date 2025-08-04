@@ -66,7 +66,7 @@ const ForCoaches = React.memo<ForCoachesProps>(({ id = "for-coaches" }) => {
           </p>
           
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Stop Chasing Clients. Start Transforming Leaders.
+            We Engineer Perfect Matches.
           </h2>
           
           <p className="font-sans text-lg text-gray-600 mb-10">

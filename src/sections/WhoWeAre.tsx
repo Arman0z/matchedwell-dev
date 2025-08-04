@@ -39,7 +39,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
             className="font-serif text-5xl lg:text-6xl mb-4"
             variants={fadeInVariants}
           >
-            The Missing Link Between <span className="text-primary">Talent</span> and <span className="text-primary">Peak Performance</span>
+            Start Building Your <span className="text-primary">Winning Formula</span>
           </motion.h2>
           <motion.div
             className="w-24 h-1 bg-primary mx-auto mb-8"

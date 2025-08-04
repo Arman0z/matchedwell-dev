@@ -41,7 +41,7 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
           </p>
           
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Your Competition is Investing in Their People. Are You?
+            Transform Today's Contributors into Tomorrow's Leaders.
           </h2>
           
           <p className="font-sans text-lg text-gray-600 mb-10">

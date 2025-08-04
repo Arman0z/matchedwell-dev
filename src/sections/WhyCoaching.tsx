@@ -146,8 +146,8 @@ const WhyCoaching = React.memo<WhyCoachingProps>(({ id = "why-coaching" }) => {
         >
           <SectionTag label="Why Coaching" className="text-gray-700" />
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-            Your Best People Are <span className="text-primary">Operating</span><br />
-            at 60% of Their Potential
+            The <span className="text-primary">Secret Advantage</span> of<br />
+            High-Performance Organizations
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-8" />
           <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto">

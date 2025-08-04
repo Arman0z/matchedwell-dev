@@ -107,21 +107,21 @@ const WhyCoaching = React.memo<WhyCoachingProps>(({ id = "why-coaching" }) => {
     {
       title: "Limited Bandwidth",
       description: "Top performers promoted for individual success now juggle untrained leadership duties – leaving less time for individual contribution, to grow teams and drive revenue.",
-      hoverDescription: "Your leaders are drowning in day-to-day operations, leaving no time for strategic growth.",
+      hoverDescription: "Precision-matched coaches help leaders delegate effectively, prioritize strategically, and reclaim 15+ hours per week for high-impact work. Transform firefighters into visionaries.",
       image: ASSETS.WHY_COACHING_1,
       hoverImage: ASSETS.WHY_COACHING_1_5
     },
     {
       title: "Talent Retention",
       description: "Without investment in development and engagement, burnout and turnover rise – your best people walk away, taking your investment with them.",
-      hoverDescription: "High performers are leaving for companies that invest in their growth and development.",
+      hoverDescription: "Individual coaching creates a culture where top talent thrives. Reduce turnover by 40%, save recruitment costs, and build a reputation as an employer who invests in excellence.",
       image: ASSETS.WHY_COACHING_2,
       hoverImage: ASSETS.WHY_COACHING_2_5
     },
     {
       title: "Revenue Targets",
       description: "Revenue targets are either falling short or leaving growth on the table – competitors are gaining ground.",
-      hoverDescription: "Untapped leadership potential is directly impacting your bottom line and market position.",
+      hoverDescription: "When your people operate at peak performance, revenue follows. Our clients see 20-30% improvement in team productivity and measurable impact on bottom-line results.",
       image: ASSETS.WHY_COACHING_3,
       hoverImage: ASSETS.WHY_COACHING_3_5
     }
@@ -146,12 +146,12 @@ const WhyCoaching = React.memo<WhyCoachingProps>(({ id = "why-coaching" }) => {
         >
           <SectionTag label="Why Coaching" className="text-gray-700" />
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-            The <span className="text-primary">Secret Advantage</span> of<br />
-            High-Performance Organizations
+            Your Best People Are <span className="text-primary">Operating</span><br />
+            at 60% of Their Potential
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-8" />
           <p className="font-sans text-xl text-gray-600 max-w-3xl mx-auto">
-            Transform your leadership capacity and unlock exponential growth with precision-matched executive coaching.
+            Every legend has a coach. Companies see an average ROI of 7x their coaching investment. <br className="hidden lg:block" />It's time to unlock the full potential of your top talent.
           </p>
         </motion.div>
         

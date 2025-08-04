@@ -37,24 +37,24 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
           variants={simpleVariants}
         >
           <p className="text-primary uppercase font-sans font-medium text-sm tracking-wider mb-6">
-            FOR FORWARD-THINKING ORGANIZATIONS
+            FUEL PERFORMANCE. DRIVE SUCCESS.
           </p>
           
           <h2 className="font-serif text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Transform Today's Contributors into Tomorrow's Leaders.
+            Your Competition is Investing in Their People. Are You?
           </h2>
           
           <p className="font-sans text-lg text-gray-600 mb-10">
-            Build a leadership pipeline that scales with your ambitions. Our precision-matched coaches help your high-performers unlock their full potential while staying aligned with your culture and strategic goals.
+            Companies see an average 7x ROI on coaching investment. We handle the entire process—from matching to measurement—so you stay focused on running the business while your talent operates at peak.
           </p>
           
           <div className="space-y-6 mb-10">
             <div className="flex items-start">
               <div className="flex-shrink-0 w-1 h-16 bg-primary mr-6"></div>
               <div>
-                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Strategic Talent Selection</h3>
+                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">7x Average ROI on Your Investment</h3>
                 <p className="font-sans text-gray-600">
-                  We identify your highest-potential leaders and match them with coaches who understand your industry, culture, and objectives.
+                  Boost revenue through enhanced performance, improved client relationships, and stronger decision-making. Every dollar invested in coaching returns measurable business impact.
                 </p>
               </div>
             </div>
@@ -62,9 +62,9 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
             <div className="flex items-start">
               <div className="flex-shrink-0 w-1 h-16 bg-primary mr-6"></div>
               <div>
-                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Individual Deep Dive</h3>
+                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Reduce Turnover by 40%</h3>
                 <p className="font-sans text-gray-600">
-                  Each engagement begins with comprehensive assessments to understand strengths, gaps, and growth opportunities.
+                  Create a culture where top talent thrives. Individual coaching shows your people they're valued, dramatically improving retention and saving recruitment costs.
                 </p>
               </div>
             </div>
@@ -72,9 +72,9 @@ const ForBusiness = React.memo<ForBusinessProps>(({ id = "for-business" }) => {
             <div className="flex items-start">
               <div className="flex-shrink-0 w-1 h-16 bg-primary mr-6"></div>
               <div>
-                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Measurable Impact</h3>
+                <h3 className="font-sans text-lg font-semibold text-gray-900 mb-2">Zero Time Investment Required</h3>
                 <p className="font-sans text-gray-600">
-                  Track progress with our proprietary ROI framework that connects coaching outcomes to business results.
+                  We handle everything—matching, onboarding, progress tracking. You focus on strategy while we develop your team. White-glove service for executive teams.
                 </p>
               </div>
             </div>

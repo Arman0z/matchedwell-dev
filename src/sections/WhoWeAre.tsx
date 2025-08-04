@@ -39,7 +39,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
             className="font-serif text-5xl lg:text-6xl mb-4"
             variants={fadeInVariants}
           >
-            Start Building Your <span className="text-primary">Winning Formula</span>
+            The Missing Link Between <span className="text-primary">Talent</span> and <span className="text-primary">Peak Performance</span>
           </motion.h2>
           <motion.div
             className="w-24 h-1 bg-primary mx-auto mb-8"
@@ -49,7 +49,7 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
             className="font-sans text-xl text-gray-300 max-w-3xl mx-auto"
             variants={fadeInVariants}
           >
-            We handle the entire coaching ecosystem end-to-end, from strategic matching to ROI optimization.
+            MatchedWell leads a targeted, collaborative process to cultivate your firm's winning formula—aligning culture with execution. Leadership stays focused while top talent operates at peak.
           </motion.p>
         </motion.div>
         
@@ -74,9 +74,9 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute top-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <h3 className="font-serif text-xl mb-2">Discovery Phase</h3>
+                <h3 className="font-serif text-xl mb-2">Strategic Talent Selection</h3>
                 <p className="font-sans text-sm text-gray-300">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+                  Partner with leadership to identify high-impact employees based on role criticality, growth trajectory, and performance opportunity.
                 </p>
               </motion.div>
               
@@ -85,9 +85,9 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute top-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <h3 className="font-serif text-xl mb-2">Strategic Alignment</h3>
+                <h3 className="font-serif text-xl mb-2">Individual Deep Dive</h3>
                 <p className="font-sans text-sm text-gray-300">
-                  Ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                  Build rapport and uncover personal goals, leadership style, and development edges through tailored intake sessions.
                 </p>
               </motion.div>
               
@@ -96,9 +96,9 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute bottom-0 left-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <h3 className="font-serif text-xl mb-2">Implementation</h3>
+                <h3 className="font-serif text-xl mb-2">Precision Matching</h3>
                 <p className="font-sans text-sm text-gray-300">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+                  Research, vet, and facilitate chemistry calls with 2-3 coaches aligned to strategic goals, personality, and culture fit.
                 </p>
               </motion.div>
               
@@ -107,9 +107,9 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
                 className="absolute bottom-0 right-0 w-1/2 h-1/2 p-12 flex flex-col justify-center items-center text-center"
                 variants={slideFromLeftVariants}
               >
-                <h3 className="font-serif text-xl mb-2">Optimization</h3>
+                <h3 className="font-serif text-xl mb-2">Ongoing Accountability</h3>
                 <p className="font-sans text-sm text-gray-300">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
+                  Monthly check-ins and quarterly reviews ensure alignment, track ROI, and optimize outcomes for sustained development.
                 </p>
               </motion.div>
             </div>
@@ -125,12 +125,12 @@ const WhoWeAre: React.FC<WhoWeAreProps> = ({ id = "who-we-are" }) => {
           variants={fastStaggerContainerVariants}
         >
           {[
-            'Executive Leadership Development',
-            'High-Potential Talent Acceleration',
-            'Team Performance Optimization',
-            'Culture Transformation',
-            'Succession Planning',
-            'M&A Integration Support'
+            'Sharper Judgment Under Pressure',
+            'Emotional Control in High-Stress Situations',
+            'Clear, Concise Executive Communication',
+            'Consistent High-Standard Execution',
+            'Leadership Readiness & Delegation',
+            'Self-Awareness & Continuous Growth'
           ].map((feature, i) => (
             <motion.div 
               key={i} 
